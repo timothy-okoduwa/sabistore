@@ -1,17 +1,119 @@
 .slider-for-description{
     background-color: #E0EFFF;
-    height: 100vh;
+    height: 105vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+.slider-for-description2{
+    background-color: #E2F5E9;
+    height: 105vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.slider-for-description3{
+    background-color: #EBDFFD;
+    height: 105vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.slider-for-description4{
+    background-color: #FFE2C7;
+    height: 105vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .image-size{
     width: 100%;
+ 
 }
-
+.image-size3{
+    width: 105% !important;
+}
 
 @media screen and (max-width:1280px){
     .image-size{
-    width: 90%;
+    width: 10%;
 }
+.image-size3{
+    width: 100% !important;
+}
+
+}
+.write-up-under-image{
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+color: #222222;
+text-align: center;
+height: 120px;
+}
+.write-up-under-image2{
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+color: #222222;
+text-align: center;
+/* height: 120px; */
+}
+.store{
+    color: #007AFF;
+}
+.store2{
+    color: #64f298;
+}
+.store3{
+    color: #c19cf9;
+}
+.store4{
+    color: #fac18b;
+}
+
+@media screen and (max-width:843px){
+    .write-up-under-image{
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 27px;
+color: #222222;
+}
+    .write-up-under-image2{
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 27px;
+color: #222222;
+}
+}
+.thumbs-wrapper{
+    display: none;
+}
+.carousel-status{
+    display: none;
+}
+.dot{
+background-color: rgb(255, 255, 255) !important;
+outline: none !important;
+border: none !important;
+height: 12px !important;
+width: 12px !important;
+} 
+.selected{
+background-color: #61a4ec !important;
+outline: none !important;
+border: none !important;
+height: 12px !important;
+width: 12px !important;
+}
+.control-arrow {
+    display: none;
 }
