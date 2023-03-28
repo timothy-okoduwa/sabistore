@@ -12,7 +12,7 @@ const SignUp = () => {
               <LeftSlider />
             </div>
             <div className="col-12 col-md-6 ">
-              <div className="container">
+              <div className="container px-4">
                 <SignupFunction />
               </div>
             </div>
