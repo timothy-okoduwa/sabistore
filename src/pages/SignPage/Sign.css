@@ -1,0 +1,10 @@
+.slider-for-description{
+    background-color: #E0EFFF;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-size{
+    width: 100%;
+}
