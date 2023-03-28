@@ -117,10 +117,22 @@
 }
 
 .inputs-holder {
-  background: #f9f9f9;
+  /* background: #f9f9f9; */
   padding-top: 100px;
   padding-bottom: 20px;
   padding-right: 23px;
+  
+  transition: transform 0.3s ease-in-out;
+}
+.inputs-holder2 {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  padding-right: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 158vh;
+  transition: transform 0.3s ease-in-out;
 }
 .sell-with-us {
   font-family: 'Lexend';
@@ -154,8 +166,9 @@
   outline: none !important;
 }
 .PhoneInputCountry {
-  border-right: 1px solid #eeeeee !important;
+  border-right: 2px solid #eeeeee !important;
   width: 44px;
+  height: 32px;
 }
 .PhoneInputInput {
   height: 40px;
@@ -184,6 +197,7 @@
   border-radius: 9.25897px;
   outline: none;
   border: none;
+
 }
 .other-items {
   display: flex;
@@ -193,14 +207,27 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+  flex-wrap: wrap;
   color: #222222;
 }
 .sign-in{
     color: #007AFF;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:767px){
     .disappear{
         display: none;
     }
+    .inputs-holder {
+
+  padding-top: 100px;
+  padding-bottom: 20px;
+  padding-right: 0px;
+}
+}
+
+.multistep-form {
+  width: 100%;
+  height: 400px;
+  position: relative;
 }

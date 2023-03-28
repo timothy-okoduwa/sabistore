@@ -39,10 +39,8 @@ const SignupFunction = () => {
           />
         </Form.Group>
       </Form>
-      <button className="input-submit-button mt-4"> Register</button>
-      <div className="other-items mt-4">
-        Already have an account?  <span className='sign-in mx-1'>Sign In</span>
-      </div>
+      {/* <button className="input-submit-button mt-4"> Register</button> */}
+  
     </div>
   );
 };
