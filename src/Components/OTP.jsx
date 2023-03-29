@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const OTP = () => {
   return (
     <div>
-      <div className="inputs-holder2">
+      <div className="inputs-holder2 negate">
         <div>
           <div className="sell-with-us">Sell with us</div>
           <div className="sign-up">Sign Up</div>

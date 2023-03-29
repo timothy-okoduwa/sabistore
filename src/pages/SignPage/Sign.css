@@ -36,6 +36,9 @@
   width: 50%;
   position: fixed;
   /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -116,7 +119,10 @@
 .control-arrow {
   display: none;
 }
-
+.negate{
+  /* background-color: red; */
+  margin-left: 20px;
+}
 .inputs-holder {
   /* background: #f9f9f9; */
   padding-top: 100px;
@@ -217,6 +223,10 @@
 }
 
 @media screen and (max-width:991px){
+  .negate{
+
+  margin-left: 0px;
+}
     .disappear{
         display: none;
     }

@@ -21,21 +21,21 @@ const MultiStepForm = () => {
 
   return (
     <div>
-      <div className="multistep-form">
+      <div className="multistep-form ">
         {renderForm()}
         <div className="buttons">
           {step < 2 && (
             <button
               onClick={() => setStep(step + 1)}
-              className="input-submit-button mt-4"
+              className="input-submit-button mt-4 negate"
             >
               Next
             </button>
           )}
         </div>
-        <div >
+        <div style={{ height: '44px' }}>
           {step < 2 && (
-            <div className="other-items mt-4">
+            <div className="other-items mt-4 negate">
               Already have an account?{' '}
               <Link to="/signin" className="Link">
                 <span className="sign-in mx-1">Sign In</span>

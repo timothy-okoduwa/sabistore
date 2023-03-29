@@ -6,7 +6,7 @@ import PhoneInput from 'react-phone-number-input';
 const SignupFunction = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   return (
-    <div className="inputs-holder">
+    <div className="inputs-holder negate">
       <div>
         <div className="sell-with-us">Sell with us</div>
         <div className="sign-up">Sign Up</div>

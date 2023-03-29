@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const SigninOTP = () => {
   return (
     <div>
-      <div className="inputs-holder2">
+      <div className="inputs-holder2 negate">
         <div>
           <div className="sell-with-us">Welcome back</div>
           <div className="sign-up">Sign In</div>
