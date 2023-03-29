@@ -28,17 +28,17 @@ const LeftSlider = () => {
         </div>
         <div className="slider-for-description3">
           <div>
-            <img src={l3} alt="" className="image-size3" />
+            <img src={l3} alt="" className="image-size" />
           </div>
-          <div className="write-up-under-image2">
+          <div className="write-up-under-image">
             Bring your <span className="store3">“Store”</span> to life
           </div>
         </div>
         <div className="slider-for-description4">
           <div>
-            <img src={l4} alt="" className="image-size3" />
+            <img src={l4} alt="" className="image-size" />
           </div>
-          <div className="write-up-under-image2">
+          <div className="write-up-under-image">
             Bring your <span className="store4">“Store”</span> to life
           </div>
         </div>

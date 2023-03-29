@@ -1,6 +1,6 @@
 .slider-for-description {
   background-color: #e0efff;
-  height: 158vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
 }
 .slider-for-description2 {
   background-color: #e2f5e9;
-  height: 158vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 .slider-for-description3 {
   background-color: #ebdffd;
-  height: 158vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@
 }
 .slider-for-description4 {
   background-color: #ffe2c7;
-  height: 158vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +34,7 @@
   width: 100%;
 }
 .image-size3 {
-  width: 105% !important;
+  width: 100% !important;
 }
 
 @media screen and (max-width: 1280px) {
@@ -54,15 +54,7 @@
   text-align: center;
   height: 120px;
 }
-.write-up-under-image2 {
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  color: #222222;
-  text-align: center;
-  /* height: 120px; */
-}
+
 .store {
   color: #007aff;
 }
@@ -121,7 +113,8 @@
   padding-top: 100px;
   padding-bottom: 20px;
   padding-right: 23px;
-  
+  height: 120%;
+  overflow-y: scroll;
   transition: transform 0.3s ease-in-out;
 }
 .inputs-holder2 {
