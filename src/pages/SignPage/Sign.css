@@ -1,6 +1,6 @@
 .slider-for-description {
-  background-color: #e0efff;
-  
+ background-color: #e0efff;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 .slider-for-description3 {
   background-color: #ebdffd;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,12 +24,20 @@
 }
 .slider-for-description4 {
   background-color: #ffe2c7;
-  
+ 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+
+.gutty{
+  height: 100vh;
+  width: 50%;
+  position: fixed;
+}
+
+
 .image-size {
   width: 100%;
 }
@@ -113,8 +121,7 @@
   padding-top: 100px;
   padding-bottom: 20px;
   padding-right: 23px;
-  height: 120%;
-  overflow-y: scroll;
+
   transition: transform 0.3s ease-in-out;
 }
 .inputs-holder2 {

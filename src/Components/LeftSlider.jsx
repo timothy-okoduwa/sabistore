@@ -8,7 +8,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 const LeftSlider = () => {
   return (
-    <div>
+    <div className='gutty'>
       <Carousel autoPlay="true" infiniteLoop="true">
         <div className="slider-for-description">
           <div>
@@ -43,6 +43,7 @@ const LeftSlider = () => {
           </div>
         </div>
       </Carousel>
+     
     </div>
   );
 }
