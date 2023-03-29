@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import SignupFunction from './SignupFunction';
 import '../pages/SignPage/Sign.css';
+import { Link } from 'react-router-dom';
 import OTP from './OTP';
+
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
 
@@ -35,11 +37,14 @@ const MultiStepForm = () => {
           {step < 2 && (
             <div className="other-items mt-4">
               Already have an account?{' '}
-              <span className="sign-in mx-1">Sign In</span>
+              <Link to="/signin" className='Link'>
+                <span className="sign-in mx-1">Sign In</span>
+              </Link>
             </div>
           )}
         </div>
       </div>
+   
     </div>
   );
 };

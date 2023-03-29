@@ -1,12 +1,16 @@
-import SignUp from "./pages/SignPage/SignUp";
-
-
+import SignUp from './pages/SignPage/SignUp';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SignIn from './pages/SignPage/SignIn';
+import ScrollToTop from './ScrollToTop';
 function App() {
   return (
-    <div>
-      <SignUp/>
-    </div>
-    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+      <ScrollToTop />
+    </BrowserRouter>
   );
 }
 

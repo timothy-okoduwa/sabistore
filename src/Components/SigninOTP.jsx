@@ -3,13 +3,14 @@ import '../pages/SignPage/Sign.css';
 import { MuiOtpInput } from 'mui-one-time-password-input';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-const OTP = () => {
+
+const SigninOTP = () => {
   return (
     <div>
       <div className="inputs-holder2">
         <div>
-          <div className="sell-with-us">Sell with us</div>
-          <div className="sign-up">Sign Up</div>
+          <div className="sell-with-us">Welcome back</div>
+          <div className="sign-up">Sign In</div>
         </div>
         <Form className="mt-5">
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -20,11 +21,11 @@ const OTP = () => {
             <MuiOtpInput length={6} />
           </Form.Group>
         </Form>
-        <button className="input-submit-button mt-4"> Register</button>
+        <button className="input-submit-button mt-4"> Sign In</button>
         <div className="other-items mt-4">
-          Already have an account?{' '}
-          <Link to="/signin" className="Link">
-            <span className="sign-in mx-1">Sign In</span>
+          Don't have an account?{' '}
+          <Link to="/" className="Link">
+            <span className="sign-in mx-1">Sign Up</span>
           </Link>
         </div>
       </div>
@@ -32,4 +33,4 @@ const OTP = () => {
   );
 };
 
-export default OTP;
+export default SigninOTP;
