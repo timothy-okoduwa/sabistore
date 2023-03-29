@@ -33,7 +33,7 @@
 
 .gutty{
   height: 100vh;
-  width: 50%;
+  width: 51%;
   position: fixed;
   /* background-color: red; */
   display: flex;
@@ -140,6 +140,18 @@
   justify-content: center;
   /* height: 158vh; */
   transition: transform 0.3s ease-in-out;
+}
+.phoneNumber{
+ display: flex;
+ justify-content: center;
+margin-top: 30px;
+}
+@media screen and (min-width:1440px){
+  .phoneNumber{
+ display: flex;
+ justify-content: center;
+margin-top: 90px;
+}
 }
 .sell-with-us {
   font-family: 'Lexend';

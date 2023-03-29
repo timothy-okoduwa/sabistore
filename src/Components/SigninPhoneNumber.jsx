@@ -7,7 +7,7 @@ const SigninPhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   return (
     <div>
-      <div className="inputs-holder2 negate">
+      <div className="inputs-holder2 negate phoneNumber">
         <div>
           <div className="sell-with-us">Welcome back</div>
           <div className="sign-up">Sign In</div>
