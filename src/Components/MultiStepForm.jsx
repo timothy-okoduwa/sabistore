@@ -23,7 +23,7 @@ const MultiStepForm = () => {
     <div>
       <div className="multistep-form">
         {renderForm()}
-        <div className="buttons" style={{ paddingRight: '23px' }}>
+        <div className="buttons">
           {step < 2 && (
             <button
               onClick={() => setStep(step + 1)}
@@ -33,18 +33,17 @@ const MultiStepForm = () => {
             </button>
           )}
         </div>
-        <div>
+        <div >
           {step < 2 && (
             <div className="other-items mt-4">
               Already have an account?{' '}
-              <Link to="/signin" className='Link'>
+              <Link to="/signin" className="Link">
                 <span className="sign-in mx-1">Sign In</span>
               </Link>
             </div>
           )}
         </div>
       </div>
-   
     </div>
   );
 };

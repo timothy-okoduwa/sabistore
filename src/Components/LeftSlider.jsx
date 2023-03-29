@@ -7,9 +7,33 @@ import l4 from '../pages/images/left4.png';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 const LeftSlider = () => {
+
+  function handleCarouselChange(index) {
+    const gutty = document.getElementById('gutty');
+    switch (index) {
+      case 0:
+        gutty.style.backgroundColor = '#e0efff';
+        break;
+      case 1:
+        gutty.style.backgroundColor = '#e2f5e9';
+        break;
+      case 2:
+        gutty.style.backgroundColor = '#ebdffd';
+        break;
+      case 3:
+        gutty.style.backgroundColor = '#ffe2c7';
+        break;
+      default:
+        gutty.style.backgroundColor = 'white';
+    }
+  }
   return (
-    <div className='gutty'>
-      <Carousel autoPlay="true" infiniteLoop="true">
+    <div className="gutty" id="gutty">
+      <Carousel
+        autoPlay="true"
+        infiniteLoop="true"
+        onChange={handleCarouselChange}
+      >
         <div className="slider-for-description">
           <div>
             <img src={l} alt="" className="image-size" />
@@ -43,7 +67,6 @@ const LeftSlider = () => {
           </div>
         </div>
       </Carousel>
-     
     </div>
   );
 }

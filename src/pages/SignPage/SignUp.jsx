@@ -9,10 +9,10 @@ const SignUp = () => {
       <div>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 col-md-6 disappear">
+            <div className="col-12 col-lg-6 disappear">
               <LeftSlider />
             </div>
-            <div className="col-12 col-md-6 ">
+            <div className="col-12 col-lg-6 ">
               <div className="container px-4" >
                 <MultiStepForm/>
               </div>
