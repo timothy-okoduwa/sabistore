@@ -3,8 +3,11 @@ import '../pages/SignPage/Sign.css';
 import { MuiOtpInput } from 'mui-one-time-password-input';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-
-const SigninOTP = () => {
+import CircularProgress from '@mui/material/CircularProgress';
+const SigninOTP = ({ otp, setOtp, handleSignIn,loading }) => {
+  const handleChange3 = (newValue) => {
+    setOtp(newValue);
+  };
   return (
     <div>
       <div className="inputs-holder2 negate phoneNumber">
@@ -18,10 +21,25 @@ const SigninOTP = () => {
             <div className="input-label mb-3">
               *An OTP has been sent to your phone number
             </div>
-            <MuiOtpInput length={6} />
+            <MuiOtpInput length={6} value={otp} onChange={handleChange3} />
           </Form.Group>
         </Form>
-        <button className="input-submit-button mt-4"> Sign In</button>
+        <button
+          className={`input-submit-button mt-4  ${
+            loading || !otp ? 'disabled' : ''
+          }`}
+          disabled={loading || !otp}
+          
+          onClick={handleSignIn}
+        
+        >
+          {' '}
+          {loading ? (
+            <CircularProgress style={{ color: 'white' }} />
+          ) : (
+            'Register'
+          )}
+        </button>
         <div className="other-items mt-4">
           Don't have an account?{' '}
           <Link to="/" className="Link">

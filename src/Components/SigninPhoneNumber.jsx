@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../pages/SignPage/Sign.css';
 import Form from 'react-bootstrap/Form';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
-const SigninPhoneNumber = () => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+const SigninPhoneNumber = ({ phoneNumber, setPhoneNumber }) => {
+ 
   return (
     <div>
       <div className="inputs-holder2 negate phoneNumber">

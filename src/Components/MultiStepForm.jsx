@@ -40,117 +40,163 @@ const MultiStepForm = () => {
     online: true,
   });
 
-const navigate = useNavigate();
-const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
 
-const { loading, online } = info;
-const authInstance = getAuth();
-// Setting Up Recaptcha
-function setUpRecaptha(number) {
+  const { loading, online } = info;
   const authInstance = getAuth();
-  authInstance.setPersistence(browserSessionPersistence);
-  const recaptchaVerifier = new RecaptchaVerifier(
-    'recaptcha-container',
-    {
-      callback: () => {
-        console.log('reCAPTCHA verification successful');
-        setStep(step+1);
-        document.getElementById('recaptcha-container').style.display = 'none';
+  // Setting Up Recaptcha
+  function setUpRecaptha(number) {
+    const authInstance = getAuth();
+    authInstance.setPersistence(browserSessionPersistence);
+    const recaptchaVerifier = new RecaptchaVerifier(
+      'recaptcha-container',
+      {
+        callback: () => {
+          console.log('reCAPTCHA verification successful');
+          setStep(step + 1);
+          document.getElementById('recaptcha-container').style.display = 'none';
+        },
+        siteKey: '6LeVX8gkAAAAAOWuORnO2XZhXikEOrCjU1XssmnV',
       },
-      siteKey: '6LeVX8gkAAAAAOWuORnO2XZhXikEOrCjU1XssmnV',
-    },
-    authInstance
-  );
- recaptchaVerifier.render().then(() => {
-   setRecaptchaPresent(true);
- });
-  return signInWithPhoneNumber(authInstance, number, recaptchaVerifier);
-}
-
-const getOtp = async () => {
-  console.log(phoneNumber);
-  setError('');
-  console.log(error);
-  if (phoneNumber === '' || phoneNumber === undefined)
-    return setError('Please enter a valid phone number!');
-  try {
-    const response = await setUpRecaptha(phoneNumber);
-    setResult(response);
-    setFlag(true);
-  } catch (err) {
-    setError(err.message);
-  }
-};
-
-// Validating if the business Name Exists
-useEffect(() => {
-  async function checkBusinessNameExists() {
-    const querySnapshot = await getDocs(
-      query(collection(db, 'admin'), where('businessName', '==', businessName))
+      authInstance
     );
-    setBusinessNameExists(!querySnapshot.empty);
-  }
-  if (businessName) {
-    checkBusinessNameExists();
-  }
-}, [businessName]);
-
-
-// Verifying the OTP and also passing user input to the document
-async function verifyOtp() {
-  setInfo({ ...info, error: null, loading: true, online: true });
-  setError('');
-  if (otp === '' || otp === null) return;
-  if (
-    !businessName ||
-    !phoneNumber ||
-    !password ||
-    !otp ||
-    !password ||
-    !email
-  ) {
-    setInfo({ ...info, error: 'All documents are needed to Fly' });
-  }
-
-  // Check if the business name already exists
-  const q = query(
-    collection(db, 'admin'),
-    where('businessName', '==', businessName)
-  );
-  const querySnapshot = await getDocs(q);
-  if (!querySnapshot.empty) {
-    setInfo({ ...info, error: 'Business name already exists' });
-    return;
-  }
-
-  try {
-    const credential = PhoneAuthProvider.credential(result.verificationId, otp);
-    await signInWithCredential(authInstance, credential);
-    await setDoc(doc(db, 'admin', authInstance.currentUser.uid), {
-      uid: authInstance.currentUser.uid,
-      businessName,
-      phoneNumber,
-      password,
-      otp,
-      email,
-      online,
-      createdAt: Timestamp.fromDate(new Date()),
+    recaptchaVerifier.render().then(() => {
+      setRecaptchaPresent(true);
     });
-    setInfo({
-      businessName: '',
-      phoneNumber: '',
-      password: '',
-      error: null,
-      loading: false,
-      otp: '',
-      online: true,
-    });
-    navigate('/dasboard');
-  } catch (err) {
-    setError(err.message);
+    return signInWithPhoneNumber(authInstance, number, recaptchaVerifier);
   }
-}
 
+  const getOtp = async () => {
+    console.log(phoneNumber);
+    setError('');
+    console.log(error);
+    if (phoneNumber === '' || phoneNumber === undefined)
+      return setError('Please enter a valid phone number!');
+    try {
+      const response = await setUpRecaptha(phoneNumber);
+      setResult(response);
+      setFlag(true);
+    } catch (err) {
+      switch (err.code) {
+        case 'auth/invalid-email':
+          setError({
+            error: 'All fields are required.',
+          });
+          break;
+        case 'auth/user-disabled':
+          setError({
+            error:
+              'Your account has been disabled,contact the super Admin for help',
+          });
+          break;
+        case 'auth/user-not-found':
+          setError({
+            error: 'You are not authorized, go away 😡',
+          });
+          break;
+        case 'auth/too-many-requests':
+          setError({
+            error:
+              'you have exhusted the maxium trial limit, come back 1hr later ',
+          });
+          break;
+        case 'auth/network-request-failed':
+          setError({
+            error: 'check your internet connection, it seems to be slow ',
+          });
+          break;
+        case 'auth/auth/internal-error':
+          setError({
+            error: 'check your internet connection, it seems to be slow ',
+          });
+          break;
+
+        case 'auth/wrong-password':
+          setError({
+            error: 'Invalid password.',
+          });
+          break;
+        default:
+          setError(error);
+          break;
+      }
+    }
+  };
+
+  // Validating if the business Name Exists
+  useEffect(() => {
+    async function checkBusinessNameExists() {
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, 'admin'),
+          where('businessName', '==', businessName)
+        )
+      );
+      setBusinessNameExists(!querySnapshot.empty);
+    }
+    if (businessName) {
+      checkBusinessNameExists();
+    }
+  }, [businessName]);
+
+  // Verifying the OTP and also passing user input to the document
+  async function verifyOtp() {
+    setInfo({ ...info, error: null, loading: true, online: true });
+    setError('');
+    if (otp === '' || otp === null) return;
+    if (
+      !businessName ||
+      !phoneNumber ||
+      !password ||
+      !otp ||
+      !password ||
+      !email
+    ) {
+      setInfo({ ...info, error: 'All documents are needed to Fly' });
+    }
+
+    // Check if the business name already exists
+    const q = query(
+      collection(db, 'admin'),
+      where('businessName', '==', businessName)
+    );
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      setInfo({ ...info, error: 'Business name already exists' });
+      return;
+    }
+
+    try {
+      const credential = PhoneAuthProvider.credential(
+        result.verificationId,
+        otp
+      );
+      await signInWithCredential(authInstance, credential);
+      await setDoc(doc(db, 'admin', authInstance.currentUser.uid), {
+        uid: authInstance.currentUser.uid,
+        businessName,
+        phoneNumber,
+        password,
+        otp,
+        email,
+        online,
+        createdAt: Timestamp.fromDate(new Date()),
+      });
+      setInfo({
+        businessName: '',
+        phoneNumber: '',
+        password: '',
+        error: null,
+        loading: false,
+        otp: '',
+        online: true,
+      });
+      navigate('/dasboard');
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   //Ends here
   const businessNameChange = (event) => {
@@ -201,7 +247,6 @@ async function verifyOtp() {
               verifyOtp={verifyOtp}
               loading={loading}
               error={error}
-             
             />
           </div>
         );

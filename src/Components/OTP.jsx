@@ -25,7 +25,6 @@ const OTP = ({
           <div className="sign-up">Sign Up</div>
         </div>
         <Form className="mt-5">
-         
           <div>
             {error ? (
               <Alert severity="error" sx={{ mb: 2 }}>
@@ -35,7 +34,7 @@ const OTP = ({
           </div>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <div >
+            <div>
               <div className="input-label mb-3">Enter OTP</div>
               <div className="input-label mb-3">
                 *An OTP has been sent to your phone number
@@ -54,7 +53,7 @@ const OTP = ({
           }}
         >
           {loading ? (
-           'loading'
+            <CircularProgress style={{ color: 'white' }} />
           ) : (
             'Register'
           )}

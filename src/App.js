@@ -2,15 +2,28 @@ import SignUp from './pages/SignPage/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignIn from './pages/SignPage/SignIn';
 import ScrollToTop from './ScrollToTop';
+import { UserAuthContextProvider } from './Components/context/UserAuthContext';
+import Dashboard from './pages/DashBoard/Dashboard';
+import ProtectedRoute from './Components/ProtectedRoute';
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
-      <ScrollToTop />
-    </BrowserRouter>
+    <UserAuthContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        <ScrollToTop />
+      </BrowserRouter>
+    </UserAuthContextProvider>
   );
 }
 
