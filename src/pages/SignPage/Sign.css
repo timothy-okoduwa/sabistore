@@ -130,6 +130,12 @@
   padding-right: 23px;
   transition: transform 0.3s ease-in-out;
 }
+.captcha-holder {
+  /* background: #f9f9f9; */
+
+width: 80%;
+
+}
 .inputs-holder2 {
   padding-top: 100px;
   padding-bottom: 20px;
@@ -235,6 +241,12 @@ margin-top: 90px;
 }
 
 @media screen and (max-width:991px){
+  .captcha-holder {
+  /* background: #f9f9f9; */
+
+width: 100%;
+
+}
   .negate{
 
   margin-left: 0px;
@@ -307,4 +319,8 @@ margin-top: 90px;
 
 .Link{
   text-decoration: none;
+}
+.disabled {
+background: #25d365;
+  cursor: not-allowed;
 }
