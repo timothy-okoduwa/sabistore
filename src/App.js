@@ -12,14 +12,15 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route
+          {/* <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
             }
-          />
+          /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <ScrollToTop />
       </BrowserRouter>

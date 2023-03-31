@@ -1,9 +1,15 @@
-import React from 'react'
-
+import React from 'react';
+import HeadAndSide from './HeadAndSide';
+import './Dashboard.css';
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <div>
+      <HeadAndSide />
+      <div className="pidgon ">
+        <div className="container">hellfofhjdfjnrskwes</div>
+      </div>
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
