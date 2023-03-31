@@ -296,6 +296,12 @@ border-radius: 5.25722px;
   justify-content: center;
   align-items: center;
 }
+.hand-book-style2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 @media screen and (max-width:991px){
   .hand-book-style{
@@ -306,5 +312,38 @@ border-radius: 5.25722px;
 }
 }
 .hand-book-image-style{
-  width: 150%;
+  width: 100%;
+}
+.hand-book-image-style2{
+  width: 10%;
+}
+.product-list-empty{
+  font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+color: #000000;
+margin-top: 10px;
+}
+.product-list-guide{
+  font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+color: #777777;
+margin-top: 10px;
+}
+.add-product-button{
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+color: #FFFFFF;
+width: 131.26px;
+height: 45.34px;
+background: #000000;
+border-radius: 5.25722px;
+margin-top: 40px;
+outline: none;
+border: none;
 }

@@ -3,7 +3,7 @@ import '../pages/DashBoard/Dashboard.css';
 import { TbCircleDashed } from 'react-icons/tb';
 import {BsCheckCircleFill} from 'react-icons/bs'
 import s from './images/setup.svg'
-const SetUpGuide = () => {
+const SetUpGuide = ({ step ,setStep}) => {
   return (
     <div className="mt-5">
       <div className="container">
@@ -43,14 +43,21 @@ const SetUpGuide = () => {
               </div>
               <div className="col-12 col-lg-6 hand-book-style">
                 <div className="hand-book-style">
-                  <img src={s} alt="picss" className='hand-book-image-style' />
+                  <img src={s} alt="picss" className="hand-book-image-style" />
                 </div>
               </div>
             </div>
           </div>
           <div className="container pt-4 px-5 pb-4">
             <div>
-              <button className="skip-guideline-button">Skip Guideline</button>
+              <button
+                className="skip-guideline-button"
+                onClick={() => {
+                  setStep(step+1)
+                }}
+              >
+                Skip Guideline
+              </button>
             </div>
           </div>
         </div>

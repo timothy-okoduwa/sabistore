@@ -3,7 +3,7 @@ import HeadAndSide from './HeadAndSide';
 import './Dashboard.css';
 import DwelcomeProp from '../../Components/DwelcomeProp';
 import Danalytics from '../../Components/Danalytics';
-import SetUpGuide from '../../Components/SetUpGuide';
+import MultiSetUpGuide from '../../Components/MultiSetUpGuide';
 const Dashboard = () => {
   return (
     <div>
@@ -12,7 +12,7 @@ const Dashboard = () => {
         <div className="container">
           <DwelcomeProp/>
           <Danalytics/>
-          <SetUpGuide/>
+          <MultiSetUpGuide/>
         </div>
       </div>
     </div>
