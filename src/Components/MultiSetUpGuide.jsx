@@ -14,9 +14,11 @@ const MultiSetUpGuide = () => {
           </div>
         );
       case 2:
-        return <div>
-            <EmptyProductList/>
-        </div>;
+        return (
+          <div>
+            <EmptyProductList step={step} setStep={setStep} />
+          </div>
+        );
 
       default:
        return null;

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import s from './images/setup.svg';
-const EmptyProductList = () => {
+const EmptyProductList = ({ step, setStep }) => {
   return (
     <div className="mt-5">
       <div className="container">
@@ -29,6 +29,14 @@ const EmptyProductList = () => {
                   in your store
                 </div>
                 <button className="add-product-button">Add Product</button>
+                <button
+                  className="add-product-button2"
+                  onClick={() => {
+                    setStep(step - 1);
+                  }}
+                >
+                  Bring back Guideline
+                </button>
               </div>
             </div>
           </div>
