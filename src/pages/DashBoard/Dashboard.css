@@ -39,13 +39,16 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  color: #000000;
+  color: #9BA9B8;
   margin-left: 13px;
+}
+.color{
+  color:#9BA9B8;
+  font-size: 20px;
+  
 }
 
 .height {
-  background: #ffffff;
-  border-left: 2.10289px solid #000000;
   height: 50px;
   display: flex;
   align-items: center;
@@ -53,6 +56,26 @@ margin-left: 7px;
   cursor: pointer;
   width:271px;
 }
+.active .height {
+  background-color: #FFFFFF;
+   border-left: 2.10289px solid #000000;
+}
+.active .link-name {
+   color: #000000;
+}
+.active .color{
+    color: #000000;
+}
+
+
+.wko {
+  /* background-color: red; */
+  width: 70%;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
 .height2 {
   /* background: #ffffff; */
   /* border-left: 2.10289px solid #000000; */
@@ -62,13 +85,6 @@ margin-left: 7px;
 margin-left: 7px;
   cursor: pointer;
   width:271px;
-}
-.wko {
-  /* background-color: red; */
-  width: 70%;
-  margin-left: 50px;
-  display: flex;
-  align-items: center;
 }
 .static {
   height: 100vh;
@@ -140,4 +156,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 24px;
 color: #000000;
+}
+.Link{
+  text-decoration: none;
 }

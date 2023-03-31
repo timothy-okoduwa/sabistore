@@ -5,6 +5,7 @@ import ScrollToTop from './ScrollToTop';
 import { UserAuthContextProvider } from './Components/context/UserAuthContext';
 import Dashboard from './pages/DashBoard/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
+import ProductPage from './pages/DashBoard/ProductPage';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -21,6 +22,7 @@ function App() {
             }
           /> */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/productpage" element={<ProductPage />} />
         </Routes>
         <ScrollToTop />
       </BrowserRouter>
