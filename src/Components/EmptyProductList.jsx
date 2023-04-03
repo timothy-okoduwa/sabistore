@@ -14,7 +14,7 @@ const EmptyProductList = ({ setShareStore }) => {
   }, []);
   const navigate = useNavigate();
   const handleAddProductClick = () => {
-    // navigate('/productpage');
+    navigate('/productpage');
     setShowAddProductPage(true);
     localStorage.setItem('added', true);
   };
