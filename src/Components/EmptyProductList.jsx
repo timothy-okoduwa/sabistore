@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import s from './images/setup.svg';
 import { useNavigate } from 'react-router-dom';
-import ProductList from '../pages/DashBoard/ProductList';
+import ProductList from './ProductList';
 
 const EmptyProductList = ({ setShareStore }) => {
   const [showAddProductPage, setShowAddProductPage] = useState(

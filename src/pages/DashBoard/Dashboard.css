@@ -213,156 +213,232 @@
   font-size: 22px;
   color: #000000;
 }
-.number{
+.number {
   font-family: 'Lexend';
-font-style: normal;
-font-weight: 700;
-font-size: 25.2346px;
-color: #000000;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25.2346px;
+  color: #000000;
 }
-.down{
-color: #FF7777;
-font-size: 22px;
+.down {
+  color: #ff7777;
+  font-size: 22px;
 }
-.up{
-color: #08CB56;
-font-size: 22px;
+.up {
+  color: #08cb56;
+  font-size: 22px;
 }
 
-.percent{
+.percent {
   font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 13.6693px;
-color: #9BA9B8;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.6693px;
+  color: #9ba9b8;
 }
-.set-up-dash{
-/* height: 208px; */
-background: #FFFFFF;
-border: 1.05144px solid #E8E8E8;
-border-radius: 24.1832px;
+.set-up-dash {
+  /* height: 208px; */
+  background: #ffffff;
+  border: 1.05144px solid #e8e8e8;
+  border-radius: 24.1832px;
 }
-.guideline-hold-with-bottom-border{
+.guideline-hold-with-bottom-border {
   /* height: 995px; */
-  border-bottom: 1.05144px solid #E8E8E8;
+  border-bottom: 1.05144px solid #e8e8e8;
 }
-.bold-name-setup{
+.bold-name-setup {
   font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-color: #000000;
-}
-.guide-line-talks{
-  font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-color: #777777;
-}
-.steps-to-guide{
-  font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-color: #000000;
-cursor: pointer;
-}
-.dashed-circle{
-  color: #E8E8E8;
-  font-size:23px ;
-  margin-right: 10px;
-}
-.dashed-circle2{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
   color: #000000;
-  font-size:23px ;
+}
+.guide-line-talks {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #777777;
+}
+.steps-to-guide {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000000;
+  cursor: pointer;
+}
+.dashed-circle {
+  color: #e8e8e8;
+  font-size: 23px;
   margin-right: 10px;
 }
-.skip-guideline-button{
-  font-family: 'Lexend';
-font-style: normal;
-font-weight: 300;
-font-size: 16.8231px;
-color: #FFFFFF;
-width: 159.26px;
-height: 48.34px;
-outline:none;
-border: none;
-background: #000000;
-border-radius: 5.25722px;
+.dashed-circle2 {
+  color: #000000;
+  font-size: 23px;
+  margin-right: 10px;
 }
-.hand-book-style{
+.skip-guideline-button {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16.8231px;
+  color: #ffffff;
+  width: 159.26px;
+  height: 48.34px;
+  outline: none;
+  border: none;
+  background: #000000;
+  border-radius: 5.25722px;
+}
+.hand-book-style {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.hand-book-style2{
+.hand-book-style2 {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-@media screen and (max-width:991px){
-  .hand-book-style{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 20px;
+@media screen and (max-width: 991px) {
+  .hand-book-style {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+  }
 }
-}
-.hand-book-image-style{
+.hand-book-image-style {
   width: 100%;
 }
-.hand-book-image-style2{
+.hand-book-image-style2 {
   width: 10%;
 }
-.product-list-empty{
+.product-list-empty {
   font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-color: #000000;
-margin-top: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000000;
+  margin-top: 10px;
 }
-.product-list-guide{
+.product-list-guide {
   font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-color: #777777;
-margin-top: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #777777;
+  margin-top: 10px;
 }
-.add-product-button{
-font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #FFFFFF;
-width: 131.26px;
-height: 45.34px;
-background: #000000;
-border-radius: 5.25722px;
-margin-top: 40px;
-outline: none;
-border: none;
+.add-product-button {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  width: 131.26px;
+  height: 45.34px;
+  background: #000000;
+  border-radius: 5.25722px;
+  margin-top: 40px;
+  outline: none;
+  border: none;
 }
-.add-product-button2{
-font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #FFFFFF;
-width: 161.26px;
-height: 45.34px;
-background: #000000;
-border-radius: 5.25722px;
-margin-top: 40px;
-outline: none;
-border: none;
+.add-product-button2 {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  width: 161.26px;
+  height: 45.34px;
+  background: #000000;
+  border-radius: 5.25722px;
+  margin-top: 40px;
+  outline: none;
+  border: none;
 }
- .grayed-out-text {
-    color: gray;
-    cursor: default;
-    opacity: 0.4;
-  }
+.grayed-out-text {
+  color: gray;
+  cursor: default;
+  opacity: 0.4;
+}
+.see-all {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+  color: #777777;
+}
+.flex-ro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rfrf {
+  overflow-x: auto; /* enable horizontal scrolling when the content overflows */
+  white-space: nowrap; /* prevent the text from wrapping */
+
+  /* hide the scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.rfrf::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.navver {
+  display: inline-flex; /* display the divs in a row */
+  flex-wrap: nowrap; /* prevent the divs from wrapping */
+}
+.mover {
+  margin-right: 30px;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14.4397px;
+  color: #979ca3;
+  cursor: pointer;
+}
+.ure {
+  width: 126.93px;
+  height: 43.88px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4.5124px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sctop {
+  height: 30.15px;
+  background: #f8fbfc;
+  border-bottom: 0.902481px solid #f4f4f4;
+  border-radius: 4.5124px 4.5124px 0px 0px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.too-many {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.6347px;
+  color: #000000;
+}
+.too-many2 {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.6347px;
+
+}
+.text-green-500{
+  color: green;
+}
