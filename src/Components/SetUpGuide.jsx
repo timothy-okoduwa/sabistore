@@ -5,6 +5,8 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import s from './images/setup.svg';
 const SetUpGuide = ({
+  setStep,
+  step,
   storeCompleted,
   productCompleted,
   previewCompleted,
@@ -14,6 +16,9 @@ const SetUpGuide = ({
   preview,
   share,
   setShareStore,
+  setStoreCompleted,
+  setProductCompleted,
+  setPreviewCompleted,
 }) => {
   return (
     <div className="mt-5">
@@ -101,7 +106,9 @@ const SetUpGuide = ({
                 className="skip-guideline-button"
                 onClick={() => {
                   setShareStore(true);
-                
+                  setStoreCompleted(true);
+                  setProductCompleted(true);
+                  setPreviewCompleted(true);
                 }}
               >
                 Skip Guideline

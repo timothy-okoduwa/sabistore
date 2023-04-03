@@ -54,53 +54,62 @@ const MultiSetUpGuide = () => {
     localStorage.setItem('shareCompleted', true);
   };
 
-const renderGuides = () => {
-  const anyStateTrue =
-    storeCompleted || productCompleted || previewCompleted || shareStore;
-  if (!anyStateTrue) {
-    return (
-      <SetUpGuide
-        step={step}
-        setStep={setStep}
-        storeCompleted={storeCompleted}
-        productCompleted={productCompleted}
-        previewCompleted={previewCompleted}
-        shareStore={shareStore}
-        store={store}
-        create={create}
-        preview={preview}
-        share={share}
-        setStoreCompleted={setStoreCompleted}
-      />
-    );
-  } else if (
-    !storeCompleted ||
-    !productCompleted ||
-    !previewCompleted ||
-    !shareStore
-  ) {
-    return (
-      <SetUpGuide
-        step={step}
-        setStep={setStep}
-        storeCompleted={storeCompleted}
-        productCompleted={productCompleted}
-        previewCompleted={previewCompleted}
-        shareStore={shareStore}
-        store={store}
-        create={create}
-        preview={preview}
-        share={share}
-        setShareStore={setShareStore}
-      />
-    );
-  } else {
-    return (
-      <EmptyProductList step={step} setStep={1} setShareStore={setShareStore} />
-    );
-  }
-};
-
+  const renderGuides = () => {
+    const anyStateTrue =
+      storeCompleted || productCompleted || previewCompleted || shareStore;
+    if (!anyStateTrue) {
+      return (
+        <SetUpGuide
+          step={step}
+          setStep={setStep}
+          storeCompleted={storeCompleted}
+          productCompleted={productCompleted}
+          previewCompleted={previewCompleted}
+          shareStore={shareStore}
+          store={store}
+          create={create}
+          preview={preview}
+          share={share}
+          setShareStore={setShareStore}
+          setStoreCompleted={setStoreCompleted}
+          setProductCompleted={setProductCompleted}
+          setPreviewCompleted={setPreviewCompleted}
+        />
+      );
+    } else if (
+      !storeCompleted ||
+      !productCompleted ||
+      !previewCompleted ||
+      !shareStore
+    ) {
+      return (
+        <SetUpGuide
+          step={step}
+          setStep={setStep}
+          storeCompleted={storeCompleted}
+          productCompleted={productCompleted}
+          previewCompleted={previewCompleted}
+          shareStore={shareStore}
+          store={store}
+          create={create}
+          preview={preview}
+          share={share}
+          setShareStore={setShareStore}
+          setStoreCompleted={setStoreCompleted}
+          setProductCompleted={setProductCompleted}
+          setPreviewCompleted={setPreviewCompleted}
+        />
+      );
+    } else {
+      return (
+        <EmptyProductList
+          step={step}
+          setStep={1}
+          setShareStore={setShareStore}
+        />
+      );
+    }
+  };
 
   return (
     <div>
