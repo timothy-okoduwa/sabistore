@@ -361,3 +361,8 @@ margin-top: 40px;
 outline: none;
 border: none;
 }
+ .grayed-out-text {
+    color: gray;
+    cursor: default;
+    opacity: 0.4;
+  }

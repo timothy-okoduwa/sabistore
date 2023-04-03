@@ -4,52 +4,17 @@ import { TbCircleDashed } from 'react-icons/tb';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import s from './images/setup.svg';
-const SetUpGuide = ({ step, setStep }) => {
-  const [storeCompleted, setStoreCompleted] = useState(
-    localStorage.getItem('storeCompleted') === 'true'
-  );
-  const [productCompleted, setProductCompleted] = useState(
-    localStorage.getItem('productCompleted') === 'true'
-  );
-  const [previewCompleted, setPreviewCompleted] = useState(
-    localStorage.getItem('previewCompleted') === 'true'
-  );
-  const [shareStore, setShareStore] = useState(
-    localStorage.getItem('shareCompleted') === 'true'
-  );
-  useEffect(() => {
-    const storedStoreCompleted =
-      localStorage.getItem('storeCompleted') === 'true';
-    const storedProductCompleted =
-      localStorage.getItem('productCompleted') === 'true';
-    const storedPreviewCompleted =
-      localStorage.getItem('previewCompleted') === 'true';
-    const storedShareCompleted =
-      localStorage.getItem('shareCompleted') === 'true';
-    setStoreCompleted(storedStoreCompleted);
-    setProductCompleted(storedProductCompleted);
-    setPreviewCompleted(storedPreviewCompleted);
-    setShareStore(storedShareCompleted);
-  }, []);
-  const navigate = useNavigate();
-  const store = () => {
-    navigate('/productpage');
-    setStoreCompleted(true);
-    localStorage.setItem('storeCompleted', true);
-  };
-
-  const create = () => {
-    navigate('/productpage');
-    setProductCompleted(true);
-    localStorage.setItem('productCompleted', true);
-  };
-
-  const preview = () => {
-    navigate('/productpage');
-    setPreviewCompleted(true);
-    localStorage.setItem('previewCompleted', true);
-  };
-
+const SetUpGuide = ({
+  storeCompleted,
+  productCompleted,
+  previewCompleted,
+  shareStore,
+  store,
+  create,
+  preview,
+  share,
+  setShareStore,
+}) => {
   return (
     <div className="mt-5">
       <div className="container">
@@ -67,39 +32,59 @@ const SetUpGuide = ({ step, setStep }) => {
             <div className="row">
               <div className="col-12 col-lg-6">
                 <div>
-                  <div className="steps-to-guide mt-4 mb-4" onClick={store}>
+                  <div
+                    className="steps-to-guide mt-4 mb-4"
+                    onClick={storeCompleted ? null : store}
+                  >
                     {storeCompleted ? (
                       <BsCheckCircleFill className="dashed-circle2" />
                     ) : (
                       <TbCircleDashed className="dashed-circle" />
                     )}
-                    Complete/Create your store profile
+                    <span className={storeCompleted ? 'grayed-out-text' : ''}>
+                      Complete/Create your store profile
+                    </span>
                   </div>
-                  <div className="steps-to-guide mb-4" onClick={create}>
+                  <div
+                    className="steps-to-guide mb-4"
+                    onClick={productCompleted ? null : create}
+                  >
                     {' '}
                     {productCompleted ? (
                       <BsCheckCircleFill className="dashed-circle2" />
                     ) : (
                       <TbCircleDashed className="dashed-circle" />
                     )}{' '}
-                    Create a Product
+                    <span className={productCompleted ? 'grayed-out-text' : ''}>
+                      Create a Product
+                    </span>
                   </div>
-                  <div className="steps-to-guide mb-4" onClick={preview}>
+                  <div
+                    className="steps-to-guide mb-4"
+                    onClick={previewCompleted ? null : preview}
+                  >
                     {' '}
                     {previewCompleted ? (
                       <BsCheckCircleFill className="dashed-circle2" />
                     ) : (
                       <TbCircleDashed className="dashed-circle" />
                     )}{' '}
-                    Preview your store
+                    <span className={previewCompleted ? 'grayed-out-text' : ''}>
+                      Preview your store
+                    </span>
                   </div>
-                  <div className="steps-to-guide mb-4">
+                  <div
+                    className="steps-to-guide mb-4"
+                    onClick={shareStore ? null : share}
+                  >
                     {shareStore ? (
                       <BsCheckCircleFill className="dashed-circle2" />
                     ) : (
                       <TbCircleDashed className="dashed-circle" />
                     )}{' '}
-                    Share your store link
+                    <span className={shareStore ? 'grayed-out-text' : ''}>
+                      Share your store link
+                    </span>
                   </div>
                 </div>
               </div>
@@ -115,7 +100,8 @@ const SetUpGuide = ({ step, setStep }) => {
               <button
                 className="skip-guideline-button"
                 onClick={() => {
-                  setStep(step + 1);
+                  setShareStore(true);
+                
                 }}
               >
                 Skip Guideline
