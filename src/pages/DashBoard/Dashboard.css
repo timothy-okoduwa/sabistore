@@ -20,6 +20,9 @@
   border-right: 1.05144px solid #8c8c8c;
 }
 @media screen and (max-width: 871px) {
+  .table-container {
+display: none;
+}
   .text-holder-header {
     display: flex;
     align-items: center;
@@ -458,6 +461,13 @@
   font-size: 12.6347px;
   color: #000000;
 }
+.too-manyll {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+}
 .too-many2 {
   font-family: 'Lexend';
   font-style: normal;
@@ -489,6 +499,29 @@
   /* height: 46.88px; */
   padding: 10px;
 }
+.okokok2 {
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.agojie2 {
+  margin-right: 30px;
+  margin-left: 20px;
+  /* white-space: nowrap; */
+  cursor: pointer;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130.93px;
+  padding: 10px;
+}
 .activevvf {
   margin-right: 30px;
   margin-left: 20px;
@@ -510,7 +543,10 @@
   transition: all 0.3s ease;
 }
 
-@media screen and (min-width: 871px) {
+@media screen and (min-width: 872px) {
+  .dont-min-show{
+    display: none;
+  }
   .badddd {
     display: none;
   }
@@ -552,14 +588,18 @@
   font-size: 12px;
 }
 .hidden {
-  background-color: #F6F6F9;
+  background-color: #f6f6f9;
   position: fixed;
   margin-top: 21px;
   /* height: 130px; */
   width: 170px;
   border-radius: 3px;
   padding: 10px;
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1);
+  cursor: pointer;
 }
+
 .link-name11 {
   font-family: 'Lexend';
   font-style: normal;
@@ -571,16 +611,50 @@
   color: #000000;
   font-size: 20px;
 }
-.got-u:hover{
+.got-u:hover {
   background-color: #ffffff;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 4px;
   padding-left: 5px;
 }
-.got-u{
+.got-u {
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 4px;
   padding-left: 5px;
 }
+.image-for-mobile{
+  width: 240px;
+height: 240px;
+background: #D9D9D9;
+border-radius: 10px 10px 0px 0px;
+}
+.the-rest{
+  width: 240px;
+/* height: 132px; */
+background: white;
+border-radius: 0px 0px 10px 10px;
+padding-left: 14px;
+padding-right: 14px;
+padding-bottom: 10px;
+}
+.flipto{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 19px;
+}
+.name-ed{
+  font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+color: #000000;
+}
+ .currency{
+  font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 19px;
+color: #000000;
+ }

@@ -3,79 +3,83 @@ import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
 
 const Table = () => {
-const [originalData, setOriginalData] = useState([
-  {
-    id: 1,
-    product: 'Women Chanel Hand Bag ',
-    lastOrdered: '10/03/2023',
-    sales: 22,
-    status: 'Available',
-  },
-  {
-    id: 2,
-    product: 'Gucci Cloth',
-    lastOrdered: '02/05/2023',
-    sales: 5,
-    status: 'Available',
-  },
-  {
-    id: 3,
-    product: 'Apple Watch',
-    lastOrdered: '31/10/2023',
-    sales: 10,
-    status: 'Out of Stock',
-  },
-  {
-    id: 4,
-    product: 'Apple Watch',
-    lastOrdered: '28/11/2023',
-    sales: 3,
-    status: 'Few units left',
-  },
-  {
-    id: 5,
-    product: 'Women Chanel Hand Bag ',
-    lastOrdered: '10/03/2023',
-    sales: 12,
-    status: 'Available',
-  },
-]);
+  const [originalData, setOriginalData] = useState([
+    {
+      id: 1,
+      product: 'Women Chanel Hand Bag ',
+      lastOrdered: '10/03/2023',
+     Price: '22,000',
+      status: 'Available',
+    },
+    {
+      id: 2,
+      product: 'Gucci Cloth',
+      lastOrdered: '02/05/2023',
+     Price: '5,000',
+      status: 'Available',
+    },
+    {
+      id: 3,
+      product: 'Apple Watch',
+      lastOrdered: '31/10/2023',
+     Price: '10,000',
+      status: 'Out of Stock',
+    },
+    {
+      id: 4,
+      product: 'Apple Watch',
+      lastOrdered: '28/11/2023',
+     Price: '3,000',
+      status: 'Few units left',
+    },
+    {
+      id: 5,
+      product: 'Women Chanel Hand Bag ',
+      lastOrdered: '10/03/2023',
+     Price: '12,000',
+      status: 'Available',
+    },
+  ]);
 
-const [data, setData] = useState(originalData);
-const [activeFilter, setActiveFilter] = useState('allProducts');
-const handleFilterClick = (value) => {
-  if (value === 'available') {
-    const filteredData = originalData.filter(
-      (item) => item.status.toLowerCase() === 'available'
-    );
-    setData(filteredData);
-  } else if (value === 'outOfStock') {
-    const filteredData = originalData.filter(
-      (item) => item.status.toLowerCase() === 'out of stock'
-    );
-    setData(filteredData);
-  } else if (value === 'fewUnitsLeft') {
-    const filteredData = originalData.filter(
-      (item) => item.status.toLowerCase() === 'few units left'
-    );
-    setData(filteredData);
-  } else if (value === 'allProducts') {
-    setData(originalData);
-  }
-  setActiveFilter(value);
-};
+  const [data, setData] = useState(originalData);
+  const [activeFilter, setActiveFilter] = useState('allProducts');
+  const handleFilterClick = (value) => {
+    if (value === 'available') {
+      const filteredData = originalData.filter(
+        (item) => item.status.toLowerCase() === 'available'
+      );
+      setData(filteredData);
+    } else if (value === 'outOfStock') {
+      const filteredData = originalData.filter(
+        (item) => item.status.toLowerCase() === 'out of stock'
+      );
+      setData(filteredData);
+    } else if (value === 'fewUnitsLeft') {
+      const filteredData = originalData.filter(
+        (item) => item.status.toLowerCase() === 'few units left'
+      );
+      setData(filteredData);
+    } else if (value === 'allProducts') {
+      setData(originalData);
+    }
+    setActiveFilter(value);
+  };
 
   return (
     <div className="table-container">
       <div className="okokok">
         <div
-          className={`agojie ${activeFilter === 'allProducts' ? 'activevvf' : ''}`}
+          className={`agojie ${
+            activeFilter === 'allProducts' ? 'activevvf' : ''
+          }`}
           onClick={() => handleFilterClick('allProducts')}
         >
           All Products
         </div>
         <div
-          className={`agojie ${activeFilter === 'available' ? 'activevvf' : ''}`}
+          className={`agojie ${
+            activeFilter === 'available' ? 'activevvf' : ''
+          }`}
           onClick={() => handleFilterClick('available')}
         >
           Stock available
@@ -89,7 +93,9 @@ const handleFilterClick = (value) => {
           Low on Stock
         </div>
         <div
-          className={`agojie ${activeFilter === 'outOfStock' ? 'activevvf' : ''}`}
+          className={`agojie ${
+            activeFilter === 'outOfStock' ? 'activevvf' : ''
+          }`}
           onClick={() => handleFilterClick('outOfStock')}
         >
           Out of Stock
@@ -104,6 +110,7 @@ const handleFilterClick = (value) => {
                 background: '#F8FBFC',
                 paddingTop: '20px',
                 paddingBottom: '20px',
+                paddingLeft: '28px',
               }}
             >
               S/N
@@ -114,6 +121,7 @@ const handleFilterClick = (value) => {
                 background: '#F8FBFC',
                 paddingTop: '20px',
                 paddingBottom: '20px',
+                paddingLeft: '28px',
               }}
             >
               Products
@@ -124,6 +132,7 @@ const handleFilterClick = (value) => {
                 background: '#F8FBFC',
                 paddingTop: '20px',
                 paddingBottom: '20px',
+                paddingLeft: '28px',
               }}
             >
               Last Ordered
@@ -136,7 +145,7 @@ const handleFilterClick = (value) => {
                 paddingBottom: '20px',
               }}
             >
-              Sales
+             Price
             </th>
             <th
               scope="col"
@@ -144,6 +153,7 @@ const handleFilterClick = (value) => {
                 background: '#F8FBFC',
                 paddingTop: '20px',
                 paddingBottom: '20px',
+                paddingLeft: '34px',
               }}
             >
               Status
@@ -158,6 +168,7 @@ const handleFilterClick = (value) => {
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
+                  paddingLeft: '28px',
                 }}
               >
                 {item.id}
@@ -166,6 +177,7 @@ const handleFilterClick = (value) => {
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
+                  paddingLeft: '28px',
                 }}
                 className="too-many"
               >
@@ -175,8 +187,9 @@ const handleFilterClick = (value) => {
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
+                  paddingLeft: '28px',
                 }}
-                className="too-many"
+                className="too-manyll"
               >
                 {item.lastOrdered}
               </td>
@@ -184,15 +197,17 @@ const handleFilterClick = (value) => {
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
+                  // paddingLeft: '20px',
                 }}
                 className="too-many"
               >
-                {item.sales}
+                {item.Price}
               </td>
               <td
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
+                  paddingLeft: '34px',
                 }}
                 className="too-many"
               >

@@ -13,6 +13,7 @@ const HeadAndSide = () => {
   const handleInitialsClick = () => {
     setShowHidden((prevState) => !prevState);
   };
+  
   return (
     <div>
       <div className="static">
