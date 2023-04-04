@@ -112,7 +112,7 @@ const MultiSetUpGuide = () => {
   };
 
   return (
-    <div>
+    <div className="sososos">
       <div>{renderGuides()}</div>
     </div>
   );

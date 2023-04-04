@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Dashboard.css';
 import b from '../images/buyjare.svg';
 import c from '../images/SideAds.png';
@@ -8,6 +8,11 @@ import { FaStore } from 'react-icons/fa';
 import { RiSettings4Fill, RiLogoutBoxLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 const HeadAndSide = () => {
+  const [showHidden, setShowHidden] = useState(false);
+
+  const handleInitialsClick = () => {
+    setShowHidden((prevState) => !prevState);
+  };
   return (
     <div>
       <div className="static">
@@ -16,21 +21,43 @@ const HeadAndSide = () => {
             <div className="flex-up-header">
               <div>
                 <div style={{ display: 'flex' }}>
-                  <div className="initials">T.O</div>
+                  <div>
+                    <div className="initials" onClick={handleInitialsClick}>
+                      T.O
+                    </div>{' '}
+                    <div>
+                      {showHidden && (
+                        <div className="hidden">
+                          <div>
+                            <div>
+                              <div>
+                                <div className="got-u">
+                                  <RiLogoutBoxLine className="color11" />
+                                  <span className="link-name11"> Log Out</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="name-itself">Tech Hub</div>
                 </div>
               </div>
 
               <div>
                 <div>
-                  <button className="setup-guide-button">
+                  {/* <button className="setup-guide-button">
                     Setup Guideline
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="side-bar">
           <div className="">
             <div className="logo-jolder mb-2">
@@ -48,15 +75,14 @@ const HeadAndSide = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
-                <NavLink to='/productpage' className='Link'>
-                   <div className=" height">
-                  <div className=" wko">
-                    <GiPapers className="color" />
-                    <span className="link-name"> Product page</span>
+                <NavLink to="/productpage" className="Link">
+                  <div className=" height">
+                    <div className=" wko">
+                      <GiPapers className="color" />
+                      <span className="link-name"> Product page</span>
+                    </div>
                   </div>
-                </div>
                 </NavLink>
-               
               </div>
               <div className="push-down-a-bit">
                 <div className=" height">
@@ -79,12 +105,12 @@ const HeadAndSide = () => {
                 <img src={c} alt="picss" className="for-ads" />
               </div>
               <div className="push-down-a-bit logout-push">
-                <div className=" height2">
+                {/* <div className=" height2">
                   <div className=" wko">
                     <RiLogoutBoxLine className="color" />
                     <span className="link-name"> Log Out</span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

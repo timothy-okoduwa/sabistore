@@ -4,6 +4,7 @@ import './Dashboard.css';
 import DwelcomeProp from '../../Components/DwelcomeProp';
 import Danalytics from '../../Components/Danalytics';
 import MultiSetUpGuide from '../../Components/MultiSetUpGuide';
+import MobileNav from './MobileNav';
 const Dashboard = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Dashboard = () => {
           <MultiSetUpGuide/>
         </div>
       </div>
+      <MobileNav/>
     </div>
   );
 };

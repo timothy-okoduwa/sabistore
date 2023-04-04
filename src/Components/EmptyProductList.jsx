@@ -19,8 +19,8 @@ const EmptyProductList = ({ setShareStore }) => {
     localStorage.setItem('added', true);
   };
   return (
-    <div className="mt-5">
-      <div className="container">
+    <div className="mt-5 sososos">
+      <div className="container ">
         {showAddProductPage ? (
           <ProductList />
         ) : (

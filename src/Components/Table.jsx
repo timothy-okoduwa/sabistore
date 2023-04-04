@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
-const data = [
+
+const Table = () => {
+const [originalData, setOriginalData] = useState([
   {
     id: 1,
     product: 'Women Chanel Hand Bag ',
     lastOrdered: '10/03/2023',
     sales: 22,
-    status: 'Avaliable',
+    status: 'Available',
   },
   {
     id: 2,
     product: 'Gucci Cloth',
     lastOrdered: '02/05/2023',
     sales: 5,
-    status: 'Avaliable',
+    status: 'Available',
   },
   {
     id: 3,
@@ -35,13 +37,64 @@ const data = [
     product: 'Women Chanel Hand Bag ',
     lastOrdered: '10/03/2023',
     sales: 12,
-    status: 'Avaliable',
+    status: 'Available',
   },
-];
+]);
 
-const Table = () => {
+const [data, setData] = useState(originalData);
+const [activeFilter, setActiveFilter] = useState('allProducts');
+const handleFilterClick = (value) => {
+  if (value === 'available') {
+    const filteredData = originalData.filter(
+      (item) => item.status.toLowerCase() === 'available'
+    );
+    setData(filteredData);
+  } else if (value === 'outOfStock') {
+    const filteredData = originalData.filter(
+      (item) => item.status.toLowerCase() === 'out of stock'
+    );
+    setData(filteredData);
+  } else if (value === 'fewUnitsLeft') {
+    const filteredData = originalData.filter(
+      (item) => item.status.toLowerCase() === 'few units left'
+    );
+    setData(filteredData);
+  } else if (value === 'allProducts') {
+    setData(originalData);
+  }
+  setActiveFilter(value);
+};
+
   return (
     <div className="table-container">
+      <div className="okokok">
+        <div
+          className={`agojie ${activeFilter === 'allProducts' ? 'activevvf' : ''}`}
+          onClick={() => handleFilterClick('allProducts')}
+        >
+          All Products
+        </div>
+        <div
+          className={`agojie ${activeFilter === 'available' ? 'activevvf' : ''}`}
+          onClick={() => handleFilterClick('available')}
+        >
+          Stock available
+        </div>
+        <div
+          className={`agojie ${
+            activeFilter === 'fewUnitsLeft' ? 'activevvf' : ''
+          }`}
+          onClick={() => handleFilterClick('fewUnitsLeft')}
+        >
+          Low on Stock
+        </div>
+        <div
+          className={`agojie ${activeFilter === 'outOfStock' ? 'activevvf' : ''}`}
+          onClick={() => handleFilterClick('outOfStock')}
+        >
+          Out of Stock
+        </div>
+      </div>
       <table className="table no-border-bottom ">
         <thead className="sctop ">
           <tr>
@@ -97,6 +150,7 @@ const Table = () => {
             </th>
           </tr>
         </thead>
+
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
