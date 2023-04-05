@@ -150,7 +150,7 @@ const MobileProduct = () => {
 
   return (
     <>
-      <div className=" letsse2">
+      <div className=" letsse2 dont-min-show">
         <div className="okokok2 dont-min-show">
           <div
             className={`agojie ${
@@ -185,7 +185,7 @@ const MobileProduct = () => {
             Out of Stock
           </div>
         </div>
-        <div className="" style={{ marginRight: '6px' }}>
+        <div className="dont-min-show" style={{ marginRight: '6px' }}>
           <button className="download-folder" onClick={handleDownload}>
             Download List <HiFolderDownload className="folder" />
           </button>
