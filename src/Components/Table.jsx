@@ -9,35 +9,35 @@ const Table = () => {
       id: 1,
       product: 'Women Chanel Hand Bag ',
       lastOrdered: '10/03/2023',
-     Price: '22,000',
+      Price: '22,000',
       status: 'Available',
     },
     {
       id: 2,
       product: 'Gucci Cloth',
       lastOrdered: '02/05/2023',
-     Price: '5,000',
+      Price: '5,000',
       status: 'Available',
     },
     {
       id: 3,
       product: 'Apple Watch',
       lastOrdered: '31/10/2023',
-     Price: '10,000',
+      Price: '10,000',
       status: 'Out of Stock',
     },
     {
       id: 4,
       product: 'Apple Watch',
       lastOrdered: '28/11/2023',
-     Price: '3,000',
+      Price: '3,000',
       status: 'Few units left',
     },
     {
       id: 5,
       product: 'Women Chanel Hand Bag ',
       lastOrdered: '10/03/2023',
-     Price: '12,000',
+      Price: '12,000',
       status: 'Available',
     },
   ]);
@@ -223,7 +223,6 @@ const Table = () => {
                 className="too-many"
               >
                 <FaCircle
-                  className="mx-2"
                   style={{
                     color:
                       item.status.toLowerCase() === 'available'
@@ -236,6 +235,7 @@ const Table = () => {
                   }}
                 />{' '}
                 <span
+                  className="mx-2"
                   style={{
                     color:
                       item.status.toLowerCase() === 'available'
@@ -255,11 +255,11 @@ const Table = () => {
                   paddingTop: '20px',
                   paddingBottom: '20px',
                   // paddingLeft: '20px',
-                  cursor:'pointer'
+                  cursor: 'pointer',
                 }}
                 className="too-many"
               >
-                <MdEdit/>
+                <MdEdit />
               </td>
             </tr>
           ))}

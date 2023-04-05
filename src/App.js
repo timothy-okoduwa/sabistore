@@ -5,7 +5,7 @@ import ScrollToTop from './ScrollToTop';
 import { UserAuthContextProvider } from './Components/context/UserAuthContext';
 import Dashboard from './pages/DashBoard/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
-import ProductPage from './pages/DashBoard/ProductPage';
+import ProductPage from './pages/ProductPage/ProductPage';
 function App() {
   return (
     <UserAuthContextProvider>
