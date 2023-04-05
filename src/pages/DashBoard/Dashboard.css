@@ -568,6 +568,7 @@
 }
 .okokok {
   display: flex;
+  flex-wrap: wrap;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -747,4 +748,10 @@
   font-weight: 400;
   font-size: 19px;
   color: #000000;
+}
+.letsse{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }

@@ -173,47 +173,49 @@ const Table = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-end mt-2">
-        <button className="download-folder" onClick={handleDownload}>
-          Download List <HiFolderDownload className="folder" />
-        </button>
-      </div>
-
       <div className="table-container">
-        <div className="okokok">
-          <div
-            className={`agojie ${
-              activeFilter === 'allProducts' ? 'activevvf' : ''
-            }`}
-            onClick={() => handleFilterClick('allProducts')}
-          >
-            All Products
+        <div className=' letsse'>
+          <div className="okokok">
+            <div
+              className={`agojie ${
+                activeFilter === 'allProducts' ? 'activevvf' : ''
+              }`}
+              onClick={() => handleFilterClick('allProducts')}
+            >
+              All Products
+            </div>
+            <div
+              className={`agojie ${
+                activeFilter === 'available' ? 'activevvf' : ''
+              }`}
+              onClick={() => handleFilterClick('available')}
+            >
+              Stock available
+            </div>
+            <div
+              className={`agojie ${
+                activeFilter === 'fewUnitsLeft' ? 'activevvf' : ''
+              }`}
+              onClick={() => handleFilterClick('fewUnitsLeft')}
+            >
+              Low on Stock
+            </div>
+            <div
+              className={`agojie ${
+                activeFilter === 'outOfStock' ? 'activevvf' : ''
+              }`}
+              onClick={() => handleFilterClick('outOfStock')}
+            >
+              Out of Stock
+            </div>
           </div>
-          <div
-            className={`agojie ${
-              activeFilter === 'available' ? 'activevvf' : ''
-            }`}
-            onClick={() => handleFilterClick('available')}
-          >
-            Stock available
-          </div>
-          <div
-            className={`agojie ${
-              activeFilter === 'fewUnitsLeft' ? 'activevvf' : ''
-            }`}
-            onClick={() => handleFilterClick('fewUnitsLeft')}
-          >
-            Low on Stock
-          </div>
-          <div
-            className={`agojie ${
-              activeFilter === 'outOfStock' ? 'activevvf' : ''
-            }`}
-            onClick={() => handleFilterClick('outOfStock')}
-          >
-            Out of Stock
+          <div className="" style={{marginRight:'6px'}}>
+            <button className="download-folder" onClick={handleDownload}>
+              Download List <HiFolderDownload className="folder" />
+            </button>
           </div>
         </div>
+
         <table className="table no-border-bottom ">
           <thead className="sctop ">
             <tr>
