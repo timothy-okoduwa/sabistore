@@ -153,7 +153,7 @@ const Table = () => {
   return (
     <>
       <div className="table-container">
-        <div className=' letsse'>
+        <div className=" letsse">
           <div className="okokok">
             <div
               className={`agojie ${
@@ -188,7 +188,7 @@ const Table = () => {
               Out of Stock
             </div>
           </div>
-          <div className="" style={{marginRight:'6px'}}>
+          <div className="" style={{ marginRight: '6px' }}>
             <button className="download-folder" onClick={handleDownload}>
               Download List <HiFolderDownload className="folder" />
             </button>
@@ -274,6 +274,7 @@ const Table = () => {
                     paddingBottom: '20px',
                     paddingLeft: '28px',
                   }}
+                  className="too-manyll"
                 >
                   {item.id}
                 </td>
@@ -283,7 +284,7 @@ const Table = () => {
                     paddingBottom: '20px',
                     paddingLeft: '28px',
                   }}
-                  className="too-many"
+                  className="too-manyll"
                 >
                   {item.product}
                 </td>
@@ -303,7 +304,7 @@ const Table = () => {
                     paddingBottom: '20px',
                     // paddingLeft: '20px',
                   }}
-                  className="too-many"
+                  className="too-manyll"
                 >
                   {item.Price}
                 </td>
@@ -313,7 +314,7 @@ const Table = () => {
                     paddingBottom: '20px',
                     paddingLeft: '20px',
                   }}
-                  className="too-many"
+                  className="too-manyll"
                 >
                   <FaCircle
                     style={{

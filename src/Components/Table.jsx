@@ -181,6 +181,7 @@ const Table = () => {
                   paddingBottom: '20px',
                   paddingLeft: '28px',
                 }}
+                className="too-manyll"
               >
                 {item.id}
               </td>
@@ -190,7 +191,7 @@ const Table = () => {
                   paddingBottom: '20px',
                   paddingLeft: '28px',
                 }}
-                className="too-many"
+                className="too-manyll"
               >
                 {item.product}
               </td>
@@ -210,7 +211,7 @@ const Table = () => {
                   paddingBottom: '20px',
                   // paddingLeft: '20px',
                 }}
-                className="too-many"
+                className="too-manyll"
               >
                 {item.Price}
               </td>
@@ -220,7 +221,7 @@ const Table = () => {
                   paddingBottom: '20px',
                   paddingLeft: '20px',
                 }}
-                className="too-many"
+                className="too-manyll"
               >
                 <FaCircle
                   style={{
@@ -257,7 +258,7 @@ const Table = () => {
                   // paddingLeft: '20px',
                   cursor: 'pointer',
                 }}
-                className="too-many"
+                className="too-manyll"
               >
                 <MdEdit />
               </td>
