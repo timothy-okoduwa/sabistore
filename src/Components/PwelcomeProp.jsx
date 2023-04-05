@@ -1,6 +1,7 @@
 import React from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import { HiFolderDownload } from 'react-icons/hi';
+
 const DwelcomeProp = () => {
   return (
     <div className="down-a-bit">
@@ -8,12 +9,8 @@ const DwelcomeProp = () => {
         <div>
           <div className="store-name mb-3">Welcome, Tech_Hub</div>
         </div>
-        <div className="lonly-ride">
-          <div className="wikok">
-            <button className="download-folder">
-              Download List <HiFolderDownload className='folder' />
-            </button>
-          </div>
+        <div>
+          
           <div>
             <button className="preview-store-button2">Add Product</button>
           </div>

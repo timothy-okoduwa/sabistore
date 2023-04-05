@@ -3,6 +3,30 @@ import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import ReactPaginate from 'react-paginate';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { HiFolderDownload } from 'react-icons/hi';
+// export const handleDownload = (data) => {
+//   const doc = new jsPDF();
+//   const tableRows = [];
+//   const headers = ['ID', 'Product', 'Last Ordered', 'Price', 'Status'];
+//   const dataArray = Object.values(data); // convert object to array
+//   dataArray.forEach((item) => {
+//     const dataRow = [
+//       item.id,
+//       item.product,
+//       item.lastOrdered,
+//       item.Price,
+//       item.status,
+//     ];
+//     tableRows.push(dataRow);
+//   });
+//   doc.autoTable({
+//     head: [headers],
+//     body: tableRows,
+//   });
+//   doc.save('product-list.pdf');
+// };
 
 const Table = () => {
   const [originalData, setOriginalData] = useState([
@@ -93,6 +117,28 @@ const Table = () => {
   ]);
 
   const [data, setData] = useState(originalData);
+  const handleDownload = () => {
+    const doc = new jsPDF();
+    const tableRows = [];
+    const headers = ['ID', 'Product', 'Last Ordered', 'Price', 'Status'];
+    const dataArray = Object.values(data); // convert object to array
+    dataArray.forEach((item) => {
+      const dataRow = [
+        item.id,
+        item.product,
+        item.lastOrdered,
+        item.Price,
+        item.status,
+      ];
+      tableRows.push(dataRow);
+    });
+    doc.autoTable({
+      head: [headers],
+      body: tableRows,
+    });
+    doc.save('product-list.pdf');
+  };
+
   const [activeFilter, setActiveFilter] = useState('allProducts');
   const [currentPage, setCurrentPage] = useState(0); // Add currentPage state variable
   const handleFilterClick = (value) => {
@@ -116,16 +162,23 @@ const Table = () => {
     }
     setActiveFilter(value);
   };
-const handlePageChange = ({ selected }) => {
-  setCurrentPage(selected);
-};
-const itemsPerPage = 8;
-const pageCount = Math.ceil(data.length / itemsPerPage);
-const startIndex = currentPage * itemsPerPage;
-const endIndex = startIndex + itemsPerPage;
-const currentData = data.slice(startIndex, endIndex);
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+  const itemsPerPage = 8;
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = data.slice(startIndex, endIndex);
+
   return (
     <>
+      <div className="d-flex justify-content-end mt-2">
+        <button className="download-folder" onClick={handleDownload}>
+          Download List <HiFolderDownload className="folder" />
+        </button>
+      </div>
+
       <div className="table-container">
         <div className="okokok">
           <div
@@ -282,7 +335,6 @@ const currentData = data.slice(startIndex, endIndex);
                   className="too-many"
                 >
                   <FaCircle
-                   
                     style={{
                       color:
                         item.status.toLowerCase() === 'available'
