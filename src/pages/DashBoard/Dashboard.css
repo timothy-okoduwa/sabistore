@@ -19,7 +19,7 @@
   width: 275px;
   border-right: 1.05144px solid #8c8c8c;
 }
-@media screen and (max-width: 871px) {
+@media screen and (max-width: 966px) {
   .table-container {
 display: none;
 }
@@ -543,7 +543,7 @@ display: none;
   transition: all 0.3s ease;
 }
 
-@media screen and (min-width: 872px) {
+@media screen and (min-width: 966px) {
   .dont-min-show{
     display: none;
   }

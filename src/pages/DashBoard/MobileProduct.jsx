@@ -66,7 +66,7 @@ const MobileProduct = () => {
        };
   return (
     <>
-      <div className="okokok2">
+      <div className="okokok2 dont-min-show">
         <div
           className={`agojie2 ${
             activeFilter === 'allProducts' ? 'activevvf' : ''

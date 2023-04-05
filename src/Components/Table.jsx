@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 
 const Table = () => {
   const [originalData, setOriginalData] = useState([
@@ -145,7 +146,7 @@ const Table = () => {
                 paddingBottom: '20px',
               }}
             >
-             Price
+              Price
             </th>
             <th
               scope="col"
@@ -153,10 +154,20 @@ const Table = () => {
                 background: '#F8FBFC',
                 paddingTop: '20px',
                 paddingBottom: '20px',
-                paddingLeft: '34px',
+                paddingLeft: '12px',
               }}
             >
               Status
+            </th>
+            <th
+              scope="col"
+              style={{
+                background: '#F8FBFC',
+                paddingTop: '20px',
+                paddingBottom: '20px',
+              }}
+            >
+              Edit
             </th>
           </tr>
         </thead>
@@ -207,7 +218,7 @@ const Table = () => {
                 style={{
                   paddingTop: '20px',
                   paddingBottom: '20px',
-                  paddingLeft: '34px',
+                  paddingLeft: '20px',
                 }}
                 className="too-many"
               >
@@ -238,6 +249,17 @@ const Table = () => {
                 >
                   {item.status}
                 </span>
+              </td>
+              <td
+                style={{
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
+                  // paddingLeft: '20px',
+                  cursor:'pointer'
+                }}
+                className="too-many"
+              >
+                <MdEdit/>
               </td>
             </tr>
           ))}
