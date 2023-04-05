@@ -4,7 +4,9 @@ import v from './images/vp.jpg';
 import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import ReactPaginate from 'react-paginate';
-
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { HiFolderDownload } from 'react-icons/hi';
 const MobileProduct = () => {
   const [originalData, setOriginalData] = useState([
     {
@@ -124,40 +126,69 @@ const MobileProduct = () => {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = data.slice(startIndex, endIndex);
+   const handleDownload = () => {
+     const doc = new jsPDF();
+     const tableRows = [];
+     const headers = ['ID', 'Product', 'Last Ordered', 'Price', 'Status'];
+     const dataArray = Object.values(data); // convert object to array
+     dataArray.forEach((item) => {
+       const dataRow = [
+         item.id,
+         item.product,
+         item.lastOrdered,
+         item.Price,
+         item.status,
+       ];
+       tableRows.push(dataRow);
+     });
+     doc.autoTable({
+       head: [headers],
+       body: tableRows,
+     });
+     doc.save('product-list.pdf');
+   };
+
   return (
     <>
-      <div className="okokok2 dont-min-show">
-        <div
-          className={`agojie2 ${
-            activeFilter === 'allProducts' ? 'activevvf' : ''
-          }`}
-          onClick={() => handleFilterClick('allProducts')}
-        >
-          All Products
+      <div className=" letsse2">
+        <div className="okokok2 dont-min-show">
+          <div
+            className={`agojie ${
+              activeFilter === 'allProducts' ? 'activevvf' : ''
+            }`}
+            onClick={() => handleFilterClick('allProducts')}
+          >
+            All Products
+          </div>
+          <div
+            className={`agojie ${
+              activeFilter === 'available' ? 'activevvf' : ''
+            }`}
+            onClick={() => handleFilterClick('available')}
+          >
+            Stock available
+          </div>
+          <div
+            className={`agojie ${
+              activeFilter === 'fewUnitsLeft' ? 'activevvf' : ''
+            }`}
+            onClick={() => handleFilterClick('fewUnitsLeft')}
+          >
+            Low on Stock
+          </div>
+          <div
+            className={`agojie ${
+              activeFilter === 'outOfStock' ? 'activevvf' : ''
+            }`}
+            onClick={() => handleFilterClick('outOfStock')}
+          >
+            Out of Stock
+          </div>
         </div>
-        <div
-          className={`agojie2 ${
-            activeFilter === 'available' ? 'activevvf' : ''
-          }`}
-          onClick={() => handleFilterClick('available')}
-        >
-          Stock available
-        </div>
-        <div
-          className={`agojie2 ${
-            activeFilter === 'fewUnitsLeft' ? 'activevvf' : ''
-          }`}
-          onClick={() => handleFilterClick('fewUnitsLeft')}
-        >
-          Low on Stock
-        </div>
-        <div
-          className={`agojie2 ${
-            activeFilter === 'outOfStock' ? 'activevvf' : ''
-          }`}
-          onClick={() => handleFilterClick('outOfStock')}
-        >
-          Out of Stock
+        <div className="" style={{ marginRight: '6px' }}>
+          <button className="download-folder" onClick={handleDownload}>
+            Download List <HiFolderDownload className="folder" />
+          </button>
         </div>
       </div>
       <div className="container dont-min-show pt-3">

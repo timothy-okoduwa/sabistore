@@ -6,27 +6,6 @@ import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
-// export const handleDownload = (data) => {
-//   const doc = new jsPDF();
-//   const tableRows = [];
-//   const headers = ['ID', 'Product', 'Last Ordered', 'Price', 'Status'];
-//   const dataArray = Object.values(data); // convert object to array
-//   dataArray.forEach((item) => {
-//     const dataRow = [
-//       item.id,
-//       item.product,
-//       item.lastOrdered,
-//       item.Price,
-//       item.status,
-//     ];
-//     tableRows.push(dataRow);
-//   });
-//   doc.autoTable({
-//     head: [headers],
-//     body: tableRows,
-//   });
-//   doc.save('product-list.pdf');
-// };
 
 const Table = () => {
   const [originalData, setOriginalData] = useState([

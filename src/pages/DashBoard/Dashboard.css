@@ -206,44 +206,80 @@
   text-decoration: none;
   outline: none !important;
   border: none !important;
+  font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 .pagination .active a {
   color: white;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 .pagination .disabledd a {
   color: gray;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 .pagination .active {
   color: #000000 !important;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 .pagination .active a {
   color: #ffffff;
   background: #000000;
   border-radius: 5px;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 .pagination .active a :hover {
   color: #ffffff;
   background: #000000;
   border-radius: 5px;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 .pagination .page-item:first-child .page-link {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
   margin-left: 10px;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 .pagination .page-item:last-child .page-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   margin-left: 10px;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 .pagination .page-link:focus,
 .pagination .page-link:hover {
   margin-left: 10px;
+    font-family: 'Lexend'!important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
 }
 
 
@@ -572,6 +608,13 @@
   padding-top: 25px;
   padding-bottom: 25px;
 }
+.okokok2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
 .agojie {
   margin-right: 30px;
   margin-left: 20px;
@@ -752,6 +795,12 @@
 .letsse{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.letsse2{
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
