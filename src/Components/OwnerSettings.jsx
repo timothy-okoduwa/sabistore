@@ -3,15 +3,14 @@ import '../pages/Settings/Settings.css';
 import { GoVerified } from 'react-icons/go';
 const OwnerSettings = () => {
   const [images, setImages] = useState([]);
- function handleSelect(event) {
-   const file = event.target.files[0];
-   const reader = new FileReader();
-   reader.readAsDataURL(file);
-   reader.onload = () => {
-     setImages([reader.result]);
-   };
- }
-
+  function handleSelect(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImages([reader.result]);
+    };
+  }
 
   function handleClick(event) {
     // Trigger click on input element to open file selection dialog
@@ -20,7 +19,6 @@ const OwnerSettings = () => {
     fileInput.click();
   }
 
- 
   return (
     <div className="through">
       <div className="sett mb-3">
@@ -69,7 +67,7 @@ const OwnerSettings = () => {
                   />
                 </div>
               </div>
-              <div className="col-12 col-lg-6">
+              <div className="col-12 col-lg-6 mt-3">
                 <div>
                   <div className="trouble">Email</div>
                   <input
