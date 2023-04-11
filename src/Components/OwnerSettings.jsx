@@ -57,7 +57,7 @@ const OwnerSettings = () => {
           <div className="eleoo">
             <div className="div">Store Details</div>
             <div className="row mt-4">
-              <div className="col-12 col-lg-6">
+              <div className="col-12 col-lg-6 mb-4">
                 <div>
                   <div className="trouble">Business Name</div>
                   <input
@@ -67,7 +67,7 @@ const OwnerSettings = () => {
                   />
                 </div>
               </div>
-              <div className="col-12 col-lg-6 mt-3">
+              <div className="col-12 col-lg-6 ">
                 <div>
                   <div className="trouble">Email</div>
                   <input
