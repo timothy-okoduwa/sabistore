@@ -1,0 +1,229 @@
+.sett {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10.6548px;
+  padding-bottom: 10px;
+}
+.store-cover {
+  height: 220px;
+  background: #fff5ea;
+  border: 1px solid #e8e8e8;
+  border-radius: 10.6548px;
+}
+.store-cover2 {
+   height: 220px;
+  width: 100%;
+  object-fit: cover;
+  background: #fff5ea;
+  border: 1px solid #e8e8e8;
+  border-radius: 10.6548px;
+}
+.upppoi {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  color: #ffffff;
+  width: 159px;
+  height: 46px;
+  background: #000000;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+.retrospet {
+  position: relative;
+}
+.loo {
+  display: flex;
+  justify-content: center;
+  margin-top: -50px;
+}
+.ava-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.fhfh {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  font-size: 22px;
+  color: #0052cc;
+}
+
+.ava {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5e5e5;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 33px;
+  color: #000000;
+}
+.GFly {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  color: #222222;
+  margin-top: 9px;
+}
+.g-stores {
+  margin-top: 9px;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #7c7c7c;
+  text-align: center;
+}
+@media screen and (max-width: 966px) {
+.delete {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px !important;
+  width: 140px !important;
+  height: 35px !important;
+
+}
+.save {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px !important;
+  width: 100px !important;
+  height: 35px !important;
+margin-left: 10px !important;
+}
+
+    .upppoi {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  color: #ffffff;
+  width: 129px;
+  height: 38px;
+  background: #000000;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  position: absolute;
+ top: 10px;
+  right: 10px;
+}
+}
+
+.eleoo{
+    padding-left: 19px !important;
+    padding-right: 19px !important;
+}
+.div{
+    font-family: 'Lexend';
+font-style: normal;
+font-weight: 500;
+font-size: 16.392px;
+line-height: 20px;
+color: #222222;
+}
+.cupid{
+    height: 50px;
+width: 100%;
+outline: none;
+background: #FFFFFF;
+border: 0.819601px solid #EEEEEE;
+border-radius: 5px;
+padding-left: 20px;
+}
+.lrted{
+   width: 100%;
+outline: none;
+background: #FFFFFF;
+border: 0.819601px solid #EEEEEE;
+border-radius: 5px;
+padding: 20px; 
+
+}
+
+.lrted::placeholder{
+    font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+color: #D9D9D9;
+}
+.cupid::placeholder{
+    font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+color: #D9D9D9;
+}
+.trouble{
+    font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+color: #000000;
+margin-bottom: 10px;
+}
+.yesss {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  background: #ffffff;
+  border: 0.819601px solid #eeeeee;
+  border-radius: 5px;
+  margin-bottom: 13px;
+  padding-left: 15px;
+}
+
+.through {
+  margin-bottom: 120px;
+
+}
+.woww2{
+    display: flex;
+    justify-content: flex-end !important;
+}
+.delete {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  width: 155px;
+  height: 45px;
+  outline: none;
+  background: none;
+  border-radius: 8px;
+  border: 1px solid #ff8888;
+  color: #ff8888;
+}
+.save {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  width: 127px;
+  height: 45px;
+  outline: none;
+  background: none;
+  border-radius: 8px;
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+  margin-left: 20px !important;
+}

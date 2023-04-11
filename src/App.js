@@ -7,6 +7,7 @@ import Dashboard from './pages/DashBoard/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProductPage from './pages/ProductPage/ProductPage';
 import AddProduct from './pages/AddProduct/AddProduct';
+import Settings from './pages/Settings/Settings';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
         <ScrollToTop />
       </BrowserRouter>

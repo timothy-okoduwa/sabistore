@@ -36,11 +36,13 @@ function MobileNav() {
           <div className="textd">Store</div>
         </div>
         <div className="truss">
-          {' '}
-          <div>
-            <RiSettings4Fill className="color mb-2" />
-          </div>
-          <div className="textd">Settings</div>
+          <NavLink to="/settings" className="Link">
+            {' '}
+            <div>
+              <RiSettings4Fill className="color mb-2" />
+            </div>
+            <div className="textd">Settings</div>
+          </NavLink>
         </div>
       </div>
     </div>

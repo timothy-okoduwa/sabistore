@@ -13,7 +13,7 @@ const HeadAndSide = () => {
   const handleInitialsClick = () => {
     setShowHidden((prevState) => !prevState);
   };
-  
+
   return (
     <div>
       <div className="static">
@@ -94,12 +94,14 @@ const HeadAndSide = () => {
                 </div>
               </div>
               <div className="push-down-a-bit">
-                <div className=" height">
-                  <div className=" wko">
-                    <RiSettings4Fill className="color" />
-                    <span className="link-name"> Settings</span>
+                <NavLink to="/settings" className="Link">
+                  <div className=" height">
+                    <div className=" wko">
+                      <RiSettings4Fill className="color" />
+                      <span className="link-name"> Settings</span>
+                    </div>
                   </div>
-                </div>
+                </NavLink>
               </div>
 
               <div className="for-ads push-down-a-bit container">

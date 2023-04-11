@@ -52,6 +52,13 @@ const NewProduct = () => {
     fileInput.click();
   }
 
+  const handleDeleteImage = (index, event) => {
+    const updatedImages = [...images];
+    updatedImages.splice(index, 1);
+    setImages(updatedImages);
+    // add this line to prevent the default form submission behavior
+  };
+
   return (
     <div className="through mt-5">
       <div>
@@ -108,7 +115,11 @@ const NewProduct = () => {
                 <div className="col-12 col-lg-6">
                   <div>
                     <div className="a34">Price</div>
-                    <input className="yesss" type="text" placeholder="Price" />
+                    <input
+                      className="yesss"
+                      type="number"
+                      placeholder="Price"
+                    />
                   </div>
                 </div>
               </div>
@@ -157,12 +168,37 @@ const NewProduct = () => {
                           className="col d-flex justify-content-center"
                           key={index}
                         >
-                          <div className="my-3 happed">
+                          <div
+                            className="my-3"
+                            style={{ position: 'relative' }}
+                          >
                             <img
                               src={image}
                               alt="Uploaded"
                               className="happed"
                             />
+                            <div
+                              style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                height: '34px',
+                                width: '34px',
+                                borderRadius: '50%',
+                                background: '#F6F6F7',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                cursor: 'pointer',
+                                color: 'black',
+                                fontWeight: 'bolder',
+                              }}
+                              onClick={(event) =>
+                                handleDeleteImage(event, index)
+                              }
+                            >
+                              X
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -230,7 +266,7 @@ const NewProduct = () => {
           </div>
         </div>
         <div className="container brilliant woww">
-          <div className='mx-4'>
+          <div className="">
             <button className="delete">Delete</button>
           </div>
           <div>

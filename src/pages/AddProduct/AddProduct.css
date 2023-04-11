@@ -77,7 +77,23 @@
 }
 @media screen and (max-width: 966px) {
   .through {
-    margin-bottom: 115px;
+    margin-bottom: 620px;
+  }
+  .delete {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px !important;
+    width: 140px !important;
+    height: 35px !important;
+  }
+  .save {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px !important;
+    width: 100px !important;
+    height: 35px !important;
   }
 }
 .Media {
@@ -183,7 +199,7 @@
   color: #ffffff;
 }
 
-.woww{
-    display: flex;
-    justify-content: flex-end;
+.woww {
+  display: flex;
+  justify-content: flex-start !important;
 }

@@ -1,22 +1,23 @@
-import React from 'react';
+import React from 'react'
+import './Settings.css';
 import HeadAndSide from '../DashBoard/HeadAndSide';
 import '../DashBoard/Dashboard.css';
 import MobileNav from '../DashBoard/MobileNav';
-import NewProduct from '../../Components/NewProduct';
-const Dashboard = () => {
+import OwnerSettings from '../../Components/OwnerSettings';
+const Settings = () => {
   return (
     <div>
       <HeadAndSide />
       <div className="pidgon ">
         <div className="container">
           <div>
-            <NewProduct/>
+           <OwnerSettings/>
           </div>
         </div>
       </div>
       <MobileNav />
     </div>
   );
-};
+}
 
-export default Dashboard;
+export default Settings
