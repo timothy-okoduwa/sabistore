@@ -29,11 +29,13 @@ function MobileNav() {
         </div>
         <div className="truss">
           {' '}
-          <div>
-            {' '}
-            <FaStore className="color mb-2" />
-          </div>
-          <div className="textd">Store</div>
+          <NavLink to="/store" className="Link">
+            <div>
+              {' '}
+              <FaStore className="color mb-2" />
+            </div>
+            <div className="textd">Store</div>
+          </NavLink>
         </div>
         <div className="truss">
           <NavLink to="/settings" className="Link">

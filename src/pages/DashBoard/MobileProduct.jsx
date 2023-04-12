@@ -1,69 +1,68 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './Dashboard.css';
 import v from '../images/vp.jpg';
 import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
+import 'firebase/compat/firestore';
+import {
+  doc,
+  // deleteDoc,
+  getDoc,
+  updateDoc,
+  onSnapshot,
+} from 'firebase/firestore';
+import { db, auth } from '../../firebase';
 const MobileProduct = () => {
-      const [originalData, setOriginalData] = useState([
-        {
-          id: 1,
-          product: 'Women Chanel Hand Bag ',
-          lastOrdered: '10/03/2023',
-          Price: '22,000',
-          status: 'Available',
-        },
-        {
-          id: 2,
-          product: 'Gucci Cloth',
-          lastOrdered: '02/05/2023',
-          Price: '5,000',
-          status: 'Available',
-        },
-        {
-          id: 3,
-          product: 'Apple Watch',
-          lastOrdered: '31/10/2023',
-          Price: '10,000',
-          status: 'Out of Stock',
-        },
-        {
-          id: 4,
-          product: 'Apple Watch',
-          lastOrdered: '28/11/2023',
-          Price: '3,000',
-          status: 'Few units left',
-        },
-        {
-          id: 5,
-          product: 'Women Chanel Hand Bag ',
-          lastOrdered: '10/03/2023',
-          Price: '12,000',
-          status: 'Available',
-        },
-      ]);
-       const [data, setData] = useState(originalData);
+       const [user, setUser] = useState({});
+       const [data, setData] = useState({});
+       const [filteredData, setFilteredData] = useState([]);
+
+       useEffect(() => {
+         const fetchData = async () => {
+           try {
+             const docRef = doc(db, 'admin', auth?.currentUser?.uid);
+             const docSnap = await getDoc(docRef);
+             if (docSnap.exists()) {
+               setUser(docSnap.data());
+               setData(docSnap.data());
+               setFilteredData(docSnap.data().products);
+             }
+           } catch (error) {
+             console.log(error.message);
+           }
+         };
+         fetchData();
+       }, []);
+       console.log(filteredData);
        const [activeFilter, setActiveFilter] = useState('allProducts');
+       const [currentPage, setCurrentPage] = useState(0); // Add currentPage state variable
        const handleFilterClick = (value) => {
+         let filteredProducts = [];
+
          if (value === 'available') {
-           const filteredData = originalData.filter(
+           filteredProducts = data?.products?.filter(
              (item) => item.status.toLowerCase() === 'available'
            );
-           setData(filteredData);
          } else if (value === 'outOfStock') {
-           const filteredData = originalData.filter(
+           filteredProducts = data?.products?.filter(
              (item) => item.status.toLowerCase() === 'out of stock'
            );
-           setData(filteredData);
          } else if (value === 'fewUnitsLeft') {
-           const filteredData = originalData.filter(
+           filteredProducts = data?.products?.filter(
              (item) => item.status.toLowerCase() === 'few units left'
            );
-           setData(filteredData);
          } else if (value === 'allProducts') {
-           setData(originalData);
+           filteredProducts = data?.products;
          }
+
+         console.log('updating filteredData state', filteredProducts);
+         setFilteredData(filteredProducts);
+
+         console.log('updating activeFilter state', value);
          setActiveFilter(value);
        };
+
+     
   return (
     <>
       <div className="okokok2 dont-min-show">
@@ -102,18 +101,22 @@ const MobileProduct = () => {
       </div>
       <div className="container dont-min-show pt-3">
         <div className="row">
-          {data.map((item) => (
+          {filteredData.map((item, index) => (
             <div
               className="col-12 col-md-6 mb-4 d-flex justify-content-center"
               key={item.id}
             >
               <div>
                 <div className="image-for-mobile">
-                  <img src={v} alt="" className="image-for-mobile" />
+                  <img
+                    src={item.imageUrls ||v}
+                    alt=""
+                    className="image-for-mobile"
+                  />
                 </div>
                 <div className="the-rest">
                   <div className="flipto">
-                    <div className="name-ed">{item.product}</div>
+                    <div className="name-ed">{item.productName}</div>
                     <div style={{ cursor: 'pointer' }}>
                       <MdEdit />
                     </div>
@@ -147,7 +150,7 @@ const MobileProduct = () => {
                     </span>
                   </div>
                   <div>
-                    <div className="currency mt-2">₦ {item.Price}</div>
+                    <div className="currency mt-2">₦ {item.currentPrice}</div>
                   </div>
                 </div>
               </div>

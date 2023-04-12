@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
@@ -6,113 +6,82 @@ import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
-
+import 'firebase/compat/firestore';
+import {
+  doc,
+  // deleteDoc,
+  getDoc,
+  updateDoc,
+  onSnapshot,
+} from 'firebase/firestore';
+import { db, auth } from '../firebase';
 const Table = () => {
-  const [originalData, setOriginalData] = useState([
-    {
-      id: 1,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '22,000',
-      status: 'Available',
-    },
-    {
-      id: 2,
-      product: 'Gucci Cloth',
-      lastOrdered: '02/05/2023',
-      Price: '5,000',
-      status: 'Available',
-    },
-    {
-      id: 3,
-      product: 'Apple Watch',
-      lastOrdered: '31/10/2023',
-      Price: '10,000',
-      status: 'Out of Stock',
-    },
-    {
-      id: 4,
-      product: 'Apple Watch',
-      lastOrdered: '28/11/2023',
-      Price: '3,000',
-      status: 'Few units left',
-    },
-    {
-      id: 5,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 6,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 7,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 8,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 9,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 10,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 11,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-    {
-      id: 12,
-      product: 'Women Chanel Hand Bag ',
-      lastOrdered: '10/03/2023',
-      Price: '12,000',
-      status: 'Available',
-    },
-  ]);
+  const [user, setUser] = useState({});
+  const [data, setData] = useState({});
+  const [filteredData, setFilteredData] = useState([]);
 
-  const [data, setData] = useState(originalData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, 'admin', auth?.currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+          setData(docSnap.data());
+          setFilteredData(docSnap.data().products);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(filteredData);
+
+  // console.log(data?.products);
   const handleDownload = () => {
     const doc = new jsPDF();
     const tableRows = [];
-    const headers = ['ID', 'Product', 'Last Ordered', 'Price', 'Status'];
-    const dataArray = Object.values(data); // convert object to array
-    dataArray.forEach((item) => {
+    const headers = [
+      'ID',
+      'Product',
+      'Date Added',
+      'Price',
+      'Status',
+      'Category',
+      'Previous Price',
+      'Status',
+      'Product ID',
+    ];
+    const dataArray = Object.values(data?.products); // convert object to array
+    dataArray.forEach((item, index) => {
       const dataRow = [
-        item.id,
-        item.product,
-        item.lastOrdered,
-        item.Price,
-        item.status,
+        index + 1,
+        item?.productName,
+        item?.dateAdded?.toDate()?.toLocaleString(),
+        item?.currentPrice,
+        item?.status,
+        item?.category,
+        item?.previousPrice,
+      
+        item?.status,
+        item?.productId?.substring(0, 6),
       ];
       tableRows.push(dataRow);
     });
+    const formattedHeaders = [
+      'ID',
+      'Product',
+      'Date Added',
+      'Price',
+      'Status',
+      'Category',
+      'Previous Price',
+      'Status',
+      'Product ID',
+    ];
     doc.autoTable({
-      head: [headers],
+      head: [formattedHeaders],
       body: tableRows,
     });
     doc.save('product-list.pdf');
@@ -121,34 +90,39 @@ const Table = () => {
   const [activeFilter, setActiveFilter] = useState('allProducts');
   const [currentPage, setCurrentPage] = useState(0); // Add currentPage state variable
   const handleFilterClick = (value) => {
+    let filteredProducts = [];
+
     if (value === 'available') {
-      const filteredData = originalData.filter(
+      filteredProducts = data?.products?.filter(
         (item) => item.status.toLowerCase() === 'available'
       );
-      setData(filteredData);
     } else if (value === 'outOfStock') {
-      const filteredData = originalData.filter(
+      filteredProducts = data?.products?.filter(
         (item) => item.status.toLowerCase() === 'out of stock'
       );
-      setData(filteredData);
     } else if (value === 'fewUnitsLeft') {
-      const filteredData = originalData.filter(
+      filteredProducts = data?.products?.filter(
         (item) => item.status.toLowerCase() === 'few units left'
       );
-      setData(filteredData);
     } else if (value === 'allProducts') {
-      setData(originalData);
+      filteredProducts = data?.products;
     }
+
+    console.log('updating filteredData state', filteredProducts);
+    setFilteredData(filteredProducts);
+
+    console.log('updating activeFilter state', value);
     setActiveFilter(value);
   };
+
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
   const itemsPerPage = 8;
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = data.slice(startIndex, endIndex);
+  const currentData = filteredData.slice(startIndex, endIndex);
 
   return (
     <>
@@ -229,7 +203,7 @@ const Table = () => {
                   paddingLeft: '28px',
                 }}
               >
-                Last Ordered
+                Date Added
               </th>
               <th
                 scope="col"
@@ -266,7 +240,7 @@ const Table = () => {
           </thead>
 
           <tbody>
-            {currentData.map((item) => (
+            {currentData?.map((item, index) => (
               <tr key={item.id}>
                 <td
                   style={{
@@ -276,7 +250,7 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.id}
+                  {index + 1}
                 </td>
                 <td
                   style={{
@@ -286,7 +260,7 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.product}
+                  {item.productName}
                 </td>
                 <td
                   style={{
@@ -296,7 +270,10 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.lastOrdered}
+                  {new Date(item?.dateAdded?.toDate()).toLocaleString('en-US', {
+                    timeZone: 'UTC',
+                    hour12: true,
+                  })}
                 </td>
                 <td
                   style={{
@@ -306,7 +283,7 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.Price}
+                  {item.currentPrice}
                 </td>
                 <td
                   style={{

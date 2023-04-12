@@ -7,12 +7,15 @@ import { GiPapers } from 'react-icons/gi';
 import { FaStore } from 'react-icons/fa';
 import { RiSettings4Fill, RiLogoutBoxLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-const HeadAndSide = () => {
+const HeadAndSide = ({ user }) => {
   const [showHidden, setShowHidden] = useState(false);
 
   const handleInitialsClick = () => {
     setShowHidden((prevState) => !prevState);
   };
+  const und = user?.businessName;
+  const underscoreIndex = und?.indexOf('_');
+  const firstLetterAfterUnderscore = und?.charAt(underscoreIndex + 1);
 
   return (
     <div>
@@ -24,7 +27,8 @@ const HeadAndSide = () => {
                 <div style={{ display: 'flex' }}>
                   <div>
                     <div className="initials" onClick={handleInitialsClick}>
-                      T.O
+                      {user?.businessName?.charAt(0)}.
+                      {firstLetterAfterUnderscore}
                     </div>{' '}
                     <div>
                       {showHidden && (
@@ -44,16 +48,12 @@ const HeadAndSide = () => {
                     </div>
                   </div>
 
-                  <div className="name-itself">Tech Hub</div>
+                  <div className="name-itself">{user?.businessName}</div>
                 </div>
               </div>
 
               <div>
-                <div>
-                  {/* <button className="setup-guide-button">
-                    Setup Guideline
-                  </button> */}
-                </div>
+                <div></div>
               </div>
             </div>
           </div>
@@ -86,12 +86,14 @@ const HeadAndSide = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
-                <div className=" height">
-                  <div className=" wko">
-                    <FaStore className="color" />
-                    <span className="link-name"> Store</span>
+                <NavLink to="/store" className="Link">
+                  <div className=" height">
+                    <div className=" wko">
+                      <FaStore className="color" />
+                      <span className="link-name"> Store</span>
+                    </div>
                   </div>
-                </div>
+                </NavLink>
               </div>
               <div className="push-down-a-bit">
                 <NavLink to="/settings" className="Link">
@@ -107,14 +109,7 @@ const HeadAndSide = () => {
               <div className="for-ads push-down-a-bit container">
                 <img src={c} alt="picss" className="for-ads" />
               </div>
-              <div className="push-down-a-bit logout-push">
-                {/* <div className=" height2">
-                  <div className=" wko">
-                    <RiLogoutBoxLine className="color" />
-                    <span className="link-name"> Log Out</span>
-                  </div>
-                </div> */}
-              </div>
+              <div className="push-down-a-bit logout-push"></div>
             </div>
           </div>
         </div>

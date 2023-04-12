@@ -21,7 +21,7 @@ const SigninOTP = ({ otp, setOtp, handleSignIn,loading }) => {
             <div className="input-label mb-3">
               *An OTP has been sent to your phone number
             </div>
-            <MuiOtpInput length={6} value={otp} onChange={handleChange3} />
+            <MuiOtpInput length={6} value={otp} onChange={handleChange3} type='number' />
           </Form.Group>
         </Form>
         <button
@@ -29,15 +29,13 @@ const SigninOTP = ({ otp, setOtp, handleSignIn,loading }) => {
             loading || !otp ? 'disabled' : ''
           }`}
           disabled={loading || !otp}
-          
           onClick={handleSignIn}
-        
         >
           {' '}
           {loading ? (
             <CircularProgress style={{ color: 'white' }} />
           ) : (
-            'Register'
+            'Sign in'
           )}
         </button>
         <div className="other-items mt-4">

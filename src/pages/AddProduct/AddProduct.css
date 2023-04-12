@@ -197,6 +197,9 @@
   background-color: #000000;
   border: none;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .woww {

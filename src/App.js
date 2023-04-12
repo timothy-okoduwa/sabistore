@@ -8,6 +8,8 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import ProductPage from './pages/ProductPage/ProductPage';
 import AddProduct from './pages/AddProduct/AddProduct';
 import Settings from './pages/Settings/Settings';
+import StoreOwner from './pages/Store/StoreOwner';
+import PSCustomer from './Components/PSCustomer';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -15,18 +17,20 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          {/* <Route
+          <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
             }
-          /> */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/store" element={<StoreOwner />} />
+          <Route path="/cus" element={<PSCustomer />} />
         </Routes>
         <ScrollToTop />
       </BrowserRouter>

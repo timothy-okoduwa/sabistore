@@ -81,7 +81,7 @@ const SignInMultiStep = () => {
     } catch (err) {
       setError(err.message);
     }
-    navigate('/dasboard');
+    navigate('/dashboard');
   };
 
   const renderForm = () => {

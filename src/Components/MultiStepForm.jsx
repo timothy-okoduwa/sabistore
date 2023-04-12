@@ -192,7 +192,7 @@ const MultiStepForm = () => {
         otp: '',
         online: true,
       });
-      navigate('/dasboard');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message);
     }

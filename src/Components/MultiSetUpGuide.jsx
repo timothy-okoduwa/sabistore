@@ -32,24 +32,24 @@ const MultiSetUpGuide = () => {
   }, []);
   const navigate = useNavigate();
   const store = () => {
-    navigate('/productpage');
+    navigate('/settings');
     setStoreCompleted(true);
     localStorage.setItem('storeCompleted', true);
   };
 
   const create = () => {
-    navigate('/productpage');
+    navigate('/addproduct');
     setProductCompleted(true);
     localStorage.setItem('productCompleted', true);
   };
 
   const preview = () => {
-    navigate('/productpage');
+    navigate('/store');
     setPreviewCompleted(true);
     localStorage.setItem('previewCompleted', true);
   };
   const share = () => {
-    navigate('/productpage');
+    navigate('/store');
     setShareStore(true);
     localStorage.setItem('shareCompleted', true);
   };
