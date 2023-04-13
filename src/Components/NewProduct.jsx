@@ -484,7 +484,16 @@ const NewProduct = () => {
         </div>
         <div className="container brilliant woww">
           <div className="">
-            <button className="delete" onClick={clearForm}>
+            <button
+              
+              onClick={clearForm}
+              disabled={loading}
+              className={`delete ${
+                loading 
+                  ? 'disableddd2'
+                  : ''
+              }`}
+            >
               Delete
             </button>
           </div>
@@ -499,7 +508,7 @@ const NewProduct = () => {
                 !status ||
                 !condition ||
                 !selectedImage
-                  ? 'disabled'
+                  ? 'disableddd'
                   : ''
               }`}
               onClick={uploadProduct}

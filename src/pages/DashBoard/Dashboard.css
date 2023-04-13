@@ -586,7 +586,7 @@ font-size: 16px !important;
   font-family: 'Lexend';
   font-style: normal;
   font-weight: 400;
-  font-size: 12.6347px;
+  font-size: 14.6347px;
   color: #000000;
 }
 .too-manyll {
@@ -780,6 +780,13 @@ font-size: 16px !important;
   display: flex;
   justify-content: space-between;
   padding-top: 19px;
+}
+.smth{
+  cursor: pointer;
+}
+.fliptot {
+  display: flex;
+  justify-content: space-between;
 }
 .name-ed {
   font-family: 'Lexend';

@@ -5,6 +5,7 @@ import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
 import 'firebase/compat/firestore';
@@ -178,9 +179,10 @@ const MobileProduct = () => {
               <div>
                 <div className="image-for-mobile">
                   <img
-                    src={item.imageUrls || v}
+                    src={item?.imageUrls[0] || v}
                     alt=""
                     className="image-for-mobile"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <div className="the-rest">
@@ -190,36 +192,45 @@ const MobileProduct = () => {
                       <MdEdit />
                     </div>
                   </div>
-                  <div className="too-many mt-2">
-                    <FaCircle
-                      style={{
-                        color:
-                          item.status.toLowerCase() === 'available'
-                            ? '#44B700'
-                            : item.status.toLowerCase() === 'few units left'
-                            ? '#FF7777'
-                            : item.status.toLowerCase() === 'out of stock'
-                            ? '#AAAAAA'
-                            : '#44B700',
-                      }}
-                    />{' '}
-                    <span
-                      style={{
-                        color:
-                          item.status.toLowerCase() === 'available'
-                            ? '#44B700'
-                            : item.status.toLowerCase() === 'few units left'
-                            ? '#FF7777'
-                            : item.status.toLowerCase() === 'out of stock'
-                            ? '#AAAAAA'
-                            : '#44B700',
-                      }}
-                    >
-                      {item.status}
-                    </span>
+                  <div className="fliptot">
+                    <div className="too-many mt-2">
+                      <FaCircle
+                        style={{
+                          color:
+                            item.status.toLowerCase() === 'available'
+                              ? '#44B700'
+                              : item.status.toLowerCase() === 'few units left'
+                              ? '#FF7777'
+                              : item.status.toLowerCase() === 'out of stock'
+                              ? '#AAAAAA'
+                              : '#44B700',
+                        }}
+                      />{' '}
+                      <span
+                        style={{
+                          color:
+                            item.status.toLowerCase() === 'available'
+                              ? '#44B700'
+                              : item.status.toLowerCase() === 'few units left'
+                              ? '#FF7777'
+                              : item.status.toLowerCase() === 'out of stock'
+                              ? '#AAAAAA'
+                              : '#44B700',
+                        }}
+                      >
+                        {item.status}
+                      </span>
+                    </div>
+                    <div>
+                      <RiDeleteBack2Fill className="smth" />
+                    </div>
                   </div>
+
                   <div>
-                    <div className="currency mt-2">₦ {item.currentPrice}</div>
+                    <div className="currency mt-2">
+                      {data.storeCurrency}{' '}
+                      {Number(item.currentPrice).toLocaleString()}
+                    </div>
                   </div>
                 </div>
               </div>

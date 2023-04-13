@@ -76,6 +76,16 @@
   margin-bottom: 70px;
 }
 @media screen and (max-width: 966px) {
+  .disableddd {
+  cursor: not-allowed !important;
+  background-color: #999999 !important;
+}
+  .disableddd2 {
+  cursor: not-allowed !important;
+  background-color: #999999 !important;
+  border: none !important;
+  outline: none !important;
+}
   .through {
     margin-bottom: 620px;
   }
@@ -205,4 +215,10 @@
 .woww {
   display: flex;
   justify-content: flex-start !important;
+}
+.disableddd {
+  cursor: not-allowed !important;
+}
+.disableddd2 {
+  cursor: not-allowed !important;
 }

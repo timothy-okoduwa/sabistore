@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import { FaCircle } from 'react-icons/fa';
-import { MdEdit } from 'react-icons/md';
+import { MdEdit, MdDelete } from 'react-icons/md';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
 import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -63,7 +64,7 @@ const Table = () => {
         item?.status,
         item?.category,
         item?.previousPrice,
-      
+
         item?.status,
         item?.productId?.substring(0, 6),
       ];
@@ -236,6 +237,16 @@ const Table = () => {
               >
                 Edit
               </th>
+              <th
+                scope="col"
+                style={{
+                  background: '#F8FBFC',
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
+                }}
+              >
+                Delete
+              </th>
             </tr>
           </thead>
 
@@ -283,7 +294,8 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.currentPrice}
+                  {data.storeCurrency}{' '}
+                  {Number(item.currentPrice).toLocaleString()}
                 </td>
                 <td
                   style={{
@@ -331,6 +343,17 @@ const Table = () => {
                   className="too-many"
                 >
                   <MdEdit />
+                </td>
+                <td
+                  style={{
+                    paddingTop: '20px',
+                    paddingBottom: '20px',
+                    paddingLeft: '40px',
+                    cursor: 'pointer',
+                  }}
+                  className="too-many"
+                >
+                  <RiDeleteBack2Fill />
                 </td>
               </tr>
             ))}

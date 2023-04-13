@@ -240,7 +240,7 @@ const Table = () => {
           </thead>
 
           <tbody>
-            {currentData?.map((item, index) => (
+            {currentData?.slice(0, 8)?.map((item, index) => (
               <tr key={item.id}>
                 <td
                   style={{
@@ -283,7 +283,8 @@ const Table = () => {
                   }}
                   className="too-manyll"
                 >
-                  {item.currentPrice}
+                  {data.storeCurrency}{' '}
+                  {Number(item.currentPrice).toLocaleString()}
                 </td>
                 <td
                   style={{

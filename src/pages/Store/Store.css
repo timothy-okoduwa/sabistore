@@ -46,7 +46,8 @@
   font-weight: 500;
   font-size: 16px;
   color: #7c7c7c;
-  text-align: center;
+  /* text-align: center; */
+  width: 200px !important;
 }
 .push-little {
   padding-left: 30px !important;
@@ -72,7 +73,7 @@
 .wool {
   width: 240px;
   height: 240px;
-
+object-fit: cover;
   background: #d9d9d9;
 }
 .saya {
@@ -111,6 +112,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: line-through;
 }
 
 .rights {
