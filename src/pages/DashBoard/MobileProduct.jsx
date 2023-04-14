@@ -4,14 +4,14 @@ import v from '../images/vp.jpg';
 import { FaCircle } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import 'firebase/compat/firestore';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import {
   doc,
-  // deleteDoc,
   getDoc,
-  updateDoc,
-  onSnapshot,
 } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+import { Link } from 'react-router-dom';
 const MobileProduct = () => {
   const [user, setUser] = useState({});
   const [data, setData] = useState({});
@@ -118,7 +118,13 @@ const MobileProduct = () => {
                   <div className="flipto">
                     <div className="name-ed">{item.productName}</div>
                     <div style={{ cursor: 'pointer' }}>
-                      <MdEdit />
+                      <Link to={`/edit/${item.productId}`}>
+                        <Tooltip>
+                          <IconButton>
+                            <MdEdit />
+                          </IconButton>
+                        </Tooltip>
+                      </Link>
                     </div>
                   </div>
                   <div className="too-many mt-2">

@@ -6,6 +6,8 @@ import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import 'firebase/compat/firestore';
 import {
   doc,
@@ -15,6 +17,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { db, auth } from '../firebase';
+import { Link } from 'react-router-dom';
 const Table = () => {
   const [user, setUser] = useState({});
   const [data, setData] = useState({});
@@ -98,11 +101,11 @@ const Table = () => {
       );
     } else if (value === 'outOfStock') {
       filteredProducts = data?.products?.filter(
-        (item) => item.status.toLowerCase() === 'out of stock'
+        (item) => item?.status?.toLowerCase() === 'out of stock'
       );
     } else if (value === 'fewUnitsLeft') {
       filteredProducts = data?.products?.filter(
-        (item) => item.status.toLowerCase() === 'few units left'
+        (item) => item?.status?.toLowerCase() === 'few units left'
       );
     } else if (value === 'allProducts') {
       filteredProducts = data?.products;
@@ -119,10 +122,10 @@ const Table = () => {
     setCurrentPage(selected);
   };
   const itemsPerPage = 8;
-  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+  const pageCount = Math.ceil(filteredData?.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = filteredData.slice(startIndex, endIndex);
+  const currentData = filteredData?.slice(startIndex, endIndex);
 
   return (
     <>
@@ -331,7 +334,13 @@ const Table = () => {
                   }}
                   className="too-many"
                 >
-                  <MdEdit />
+                  <Link to={`/edit/${item.productId}`}>
+                    <Tooltip>
+                      <IconButton>
+                        <MdEdit />
+                      </IconButton>
+                    </Tooltip>
+                  </Link>
                 </td>
               </tr>
             ))}

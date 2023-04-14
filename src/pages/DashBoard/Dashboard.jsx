@@ -22,7 +22,7 @@ const Dashboard = () => {
       <div className="pidgon ">
         <div className="container">
           <DwelcomeProp user={user} />
-          <Danalytics />
+          <Danalytics user={user} />
           <MultiSetUpGuide />
         </div>
       </div>

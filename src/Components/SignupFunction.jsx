@@ -34,7 +34,7 @@ const SignupFunction = ({
         <div>
           {error ? (
             <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
+              {JSON.stringify(error)}
             </Alert>
           ) : null}
         </div>
@@ -51,7 +51,7 @@ const SignupFunction = ({
               style={{
                 fontSize: '12px',
                 color: '#90908F',
-                marginTop:'8px',
+                marginTop: '8px',
                 marginBottom: '8px',
               }}
             >{`sendlinks.com/preview/${businessName}`}</div>

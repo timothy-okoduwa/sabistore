@@ -3,7 +3,7 @@ import '../pages/DashBoard/Dashboard.css';
 import { AiFillHeart, AiFillEye } from 'react-icons/ai';
 import { MdOutlineAdsClick } from 'react-icons/md';
 import { HiTrendingUp, HiTrendingDown } from 'react-icons/hi';
-const Danalytics = () => {
+const Danalytics = ({ user }) => {
   return (
     <div className="mt-5">
       <div className="container">
@@ -16,10 +16,10 @@ const Danalytics = () => {
               </div>
               <div className="mt-4">
                 <div className="flip-killer2 mt-4">
-                  <div className="number">500</div>
-                  {/* <div>
-                    <HiTrendingUp /> <span>wow</span>
-                  </div> */}
+                  <div className="number">{user?.products?.length}</div>
+                  <div>
+                    {/* <HiTrendingUp /> <span>{user?.products?.length}</span> */}
+                  </div>
                 </div>
               </div>
             </div>

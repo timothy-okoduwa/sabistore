@@ -11,7 +11,7 @@
   border-radius: 10.6548px;
 }
 .store-cover2 {
-   height: 220px;
+  height: 220px;
   width: 100%;
   object-fit: cover;
   background: #fff5ea;
@@ -34,7 +34,7 @@
   position: absolute;
   bottom: 30px;
   right: 30px;
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -93,100 +93,107 @@
   text-align: center;
 }
 @media screen and (max-width: 966px) {
-.delete {
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px !important;
-  width: 140px !important;
-  height: 35px !important;
+  .delete {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px !important;
+    width: 140px !important;
+    height: 35px !important;
+  }
+  .save {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px !important;
+    width: 100px !important;
+    height: 35px !important;
+    margin-left: 10px !important;
+  }
 
-}
-.save {
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px !important;
-  width: 100px !important;
-  height: 35px !important;
-margin-left: 10px !important;
+  .upppoi {
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: center;
+    color: #ffffff;
+    width: 155px;
+    height: 38px;
+    background: #000000;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
 }
 
-    .upppoi {
+.eleoo {
+  padding-left: 19px !important;
+  padding-right: 19px !important;
+}
+.div {
   font-family: 'Lexend';
   font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  text-align: center;
-  color: #ffffff;
-  width: 155px;
-  height: 38px;
-  background: #000000;
-  border-radius: 7px;
+  font-weight: 500;
+  font-size: 16.392px;
+  line-height: 20px;
+  color: #222222;
+}
+.cupid {
+  height: 50px;
+  width: 100%;
   outline: none;
-  border: none;
-  position: absolute;
- top: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  background: #ffffff;
+  border: 0.819601px solid #eeeeee;
+  border-radius: 5px;
+  padding-left: 20px;
 }
+.cupid33 {
+  height: 50px;
+  width: 100%;
+  outline: lightgrey;
+  background: #ffffff;
+  border: 0.819601px solid #9b9b9b;
+  border-radius: 5px;
+  padding-left: 20px;
 }
-
-.eleoo{
-    padding-left: 19px !important;
-    padding-right: 19px !important;
-}
-.div{
-    font-family: 'Lexend';
-font-style: normal;
-font-weight: 500;
-font-size: 16.392px;
-line-height: 20px;
-color: #222222;
-}
-.cupid{
-    height: 50px;
-width: 100%;
-outline: none;
-background: #FFFFFF;
-border: 0.819601px solid #EEEEEE;
-border-radius: 5px;
-padding-left: 20px;
-}
-.lrted{
-   width: 100%;
-outline: none;
-background: #FFFFFF;
-border: 0.819601px solid #EEEEEE;
-border-radius: 5px;
-padding: 20px; 
-
+.lrted {
+  width: 100%;
+  outline: none;
+  background: #ffffff;
+  border: 0.819601px solid #eeeeee;
+  border-radius: 5px;
+  padding: 20px;
 }
 
-.lrted::placeholder{
-    font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #D9D9D9;
+.lrted::placeholder {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d9d9d9;
 }
-.cupid::placeholder{
-    font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #D9D9D9;
+.cupid::placeholder {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d9d9d9;
 }
-.trouble{
-    font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #000000;
-margin-bottom: 10px;
+.trouble {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 10px;
 }
 .yesss {
   width: 100%;
@@ -201,11 +208,10 @@ margin-bottom: 10px;
 
 .through {
   margin-bottom: 120px;
-
 }
-.woww2{
-    display: flex;
-    justify-content: flex-end !important;
+.woww2 {
+  display: flex;
+  justify-content: flex-end !important;
 }
 .delete {
   font-family: 'Lexend';
@@ -234,4 +240,21 @@ margin-bottom: 10px;
   border: none;
   color: #ffffff;
   margin-left: 20px !important;
+}
+.Confirm {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  color: #000000;
+}
+.per{
+   color: #ff8888;
+}
+.this{
+   font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
 }

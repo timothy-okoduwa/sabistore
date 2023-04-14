@@ -10,6 +10,7 @@ import AddProduct from './pages/AddProduct/AddProduct';
 import Settings from './pages/Settings/Settings';
 import StoreOwner from './pages/Store/StoreOwner';
 import PSCustomer from './Components/PSCustomer';
+import Editpro from './pages/EditProduct/EditPro';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -25,12 +26,55 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          <Route path="/productpage" element={<ProductPage />} />
-          <Route path="/addproduct" element={<AddProduct />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/store" element={<StoreOwner />} />
-          <Route path="/cus" element={<PSCustomer />} />
+          <Route
+            path="/productpage"
+            element={
+              <ProtectedRoute>
+                <ProductPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/addproduct"
+            element={
+              <ProtectedRoute>
+                <AddProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/store"
+            element={
+              <ProtectedRoute>
+                <StoreOwner />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cus"
+            element={
+              <ProtectedRoute>
+                <PSCustomer />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit/:productId"
+            element={
+              <ProtectedRoute>
+                <Editpro />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route path="/edit/:productId" element={<Editpro />} /> */}
         </Routes>
         <ScrollToTop />
       </BrowserRouter>

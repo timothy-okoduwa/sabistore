@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import '../pages/Settings/Settings.css';
 import { GoVerified } from 'react-icons/go';
 import { db, auth, storage } from '../firebase';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { MdCancel } from 'react-icons/md';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,7 +26,9 @@ import {
   getDownloadURL,
   uploadBytes,
   deleteObject,
+  listAll,
 } from 'firebase/storage';
+import { deleteUser } from 'firebase/auth';
 import CircularProgress from '@mui/material/CircularProgress';
 const OwnerSettings = () => {
   const [user, setUser] = useState({});
@@ -30,20 +39,36 @@ const OwnerSettings = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [storeCurrency, setStoreCurrency] = useState('');
   const [adimg, setAdimg] = useState([]);
-    const [isImageSelected, setIsImageSelected] = useState(false);
+  const [isImageSelected, setIsImageSelected] = useState(false);
   const [businessNameExists, setBusinessNameExists] = useState(false);
   const navigate = useNavigate();
   const [info, setInfo] = useState({
     loading: false,
- 
   });
   const [info2, setInfo2] = useState({
     loading2: false,
- 
   });
   const { loading } = info;
   const { loading2 } = info2;
 
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #0000000',
+    boxShadow: 24,
+    borderRadius: '8px',
+    p: 4,
+  };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setConfirmationInputValue('');
+  };
 
   const duration = moment.duration(
     moment() - moment(user?.createdAt?.toDate())
@@ -61,43 +86,39 @@ const OwnerSettings = () => {
     formattedDuration = `${Math.round(duration.asYears())}y`;
   }
 
+  const ADCover = async () => {
+    setInfo({ ...info, error: null, loading: true });
+    setInfo2({ ...info, error: null, loading2: true });
+    const imgRef = ref(
+      storage,
+      `adsimages/${new Date().getTime()} - ${adimg.name}`
+    );
+    try {
+      if (user.adsCoverPath) {
+        await deleteObject(ref(storage, user.adsCoverPath));
+      }
+      const snap = await uploadBytes(imgRef, adimg);
+      const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
+      await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
+        adsCover: ads,
+        adsCoverPath: snap.ref.fullPath,
+      });
 
-const ADCover = async () => {
-  setInfo({ ...info, error: null, loading: true, });
-  setInfo2({ ...info, error: null, loading2:true });
-  const imgRef = ref(
-    storage,
-    `adsimages/${new Date().getTime()} - ${adimg.name}`
-  );
-  try {
-    if (user.adsCoverPath) {
-      await deleteObject(ref(storage, user.adsCoverPath));
+      setAdimg('');
+      setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
+    } catch (err) {
+      console.log(err);
     }
-    const snap = await uploadBytes(imgRef, adimg);
-    const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
-
-    await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
-      adsCover: ads,
-      adsCoverPath: snap.ref.fullPath,
-    });
-
-    setAdimg('');
-    setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
-  } catch (err) {
-    console.log(err);
-  }
-  setIsImageSelected(false);
-  // navigate('/dashboard');
-};
- const handleSelectImage = (e) => {
-   setAdimg(e.target.files[0]);
-   setIsImageSelected(true);
- };
-
+    setIsImageSelected(false);
+    // navigate('/dashboard');
+  };
+  const handleSelectImage = (e) => {
+    setAdimg(e.target.files[0]);
+    setIsImageSelected(true);
+  };
 
   const updateField = async () => {
-
     setInfo({ ...info, error: null, loading: true });
     try {
       const docRef = doc(db, 'admin', auth?.currentUser?.uid);
@@ -132,7 +153,7 @@ const ADCover = async () => {
           where('businessName', '==', businessName)
         )
       );
-      setBusinessNameExists(!querySnapshot.empty);
+      setBusinessNameExists(!querySnapshot?.empty);
     }
     if (businessName) {
       checkBusinessNameExists();
@@ -141,13 +162,13 @@ const ADCover = async () => {
 
   useEffect(() => {
     getDoc(doc(db, 'admin', auth?.currentUser?.uid)).then((docSnap) => {
-      if (docSnap.exists) {
-        setUser(docSnap.data());
-        setBusinessName(docSnap.data().businessName || '');
-        setEmail(docSnap.data().email || '');
-        setStoreBio(docSnap.data().storeBio || '');
-        setPhoneNumber(docSnap.data().phoneNumber || '');
-        setLocation(docSnap.data().location || '');
+      if (docSnap?.exists) {
+        setUser(docSnap?.data());
+        setBusinessName(docSnap?.data()?.businessName || '');
+        setEmail(docSnap?.data()?.email || '');
+        setStoreBio(docSnap?.data()?.storeBio || '');
+        setPhoneNumber(docSnap?.data()?.phoneNumber || '');
+        setLocation(docSnap?.data()?.location || '');
       }
     });
   }, []);
@@ -156,6 +177,56 @@ const ADCover = async () => {
   const und = user?.businessName;
   const underscoreIndex = und?.indexOf('_');
   const firstLetterAfterUnderscore = und?.charAt(underscoreIndex + 1);
+
+  const deleteStore = async (uid) => {
+    try {
+      // Get user document from admin collection
+      const docRef = doc(db, 'admin', uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+
+        // Delete all user's products
+        const products = userData.products || [];
+        for (const product of products) {
+          const productId = product.productId;
+
+          // Delete image folder with same name as user's productId
+          const storageRef = ref(storage, `images/productImages/${productId}`);
+          const listResult = await listAll(storageRef);
+          listResult.items.forEach(async (itemRef) => {
+            await deleteObject(itemRef);
+          });
+        }
+
+        // Delete user document from admin collection
+        await deleteDoc(docRef);
+        console.log('Document successfully deleted!');
+
+        // Delete user from authentication
+        const user = auth.currentUser;
+        if (user && user.uid === uid) {
+          await deleteUser(user.uid);
+          console.log('User successfully deleted!');
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting document, user, or image folder: ', error);
+    }
+  };
+
+  const handleDeleteClick = () => {
+    const user = auth.currentUser;
+    if (user) {
+      deleteStore(user.uid);
+      navigate('/');
+    }
+  };
+
+  const [confirmationInputValue, setConfirmationInputValue] = useState('');
+
+  const isConfirmationValid = confirmationInputValue === user?.businessName;
 
   return user ? (
     <>
@@ -172,11 +243,7 @@ const ADCover = async () => {
                   />
                 )}
                 {!isImageSelected && (
-                  <img
-                    src={user.adsCover || null}
-                    alt=""
-                    className="store-cover2"
-                  />
+                  <img src={user?.adsCover} alt="" className="store-cover2" />
                 )}
               </div>
               <div>
@@ -341,12 +408,80 @@ const ADCover = async () => {
                 </div>
               </div>
             </div>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              slots={{ backdrop: Backdrop }}
+              slotProps={{
+                backdrop: {
+                  timeout: 500,
+                },
+              }}
+            >
+              <Fade in={open}>
+                <Box sx={style}>
+                  <div className="d-flex justify-content-end">
+                    <MdCancel
+                      style={{ fontSize: '25px', cursor: 'pointer',marginTop:'-15px' }}
+                      onClick={handleClose}
+                    />
+                  </div>
+                  <div className="Confirm">Confirm your action.</div>
+                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                    <div className="this">
+                      Once you deactivate your store all your product and
+                      services will be{' '}
+                      <strong className="per"> permenantly Deleted</strong>.
+                      This action cannot be undone!!
+                    </div>
+                    <div className="mt-4">
+                      <div className="trouble">
+                        Type in
+                        <strong className="per">
+                          {' '}
+                          {user.businessName}{' '}
+                        </strong>{' '}
+                        for confirmation{' '}
+                      </div>
+
+                      <input
+                        type="text"
+                        className="cupid33 mt-2"
+                        placeholder="business name"
+                        value={confirmationInputValue}
+                        onChange={(e) =>
+                          setConfirmationInputValue(e.target.value)
+                        }
+                      />
+                    </div>
+
+                    <div className="mt-4 d-flex justify-content-end">
+                      <button
+                        className="delete"
+                        onClick={handleDeleteClick}
+                        style={{
+                          opacity: isConfirmationValid ? 1 : 0,
+                          pointerEvents: isConfirmationValid ? 'auto' : 'none',
+                        }}
+                      >
+                        Deactivate{' '}
+                      </button>
+                    </div>
+                  </Typography>
+                </Box>
+              </Fade>
+            </Modal>
           </div>
         </div>
         <div className="mb-5">
           <div className="container brilliant woww2">
             <div>
-              <button className="delete">Deactivate Store </button>
+              <button className="delete" onClick={handleOpen}>
+                Deactivate Store{' '}
+              </button>
             </div>
             <div className="">
               <button className="save" onClick={updateField}>

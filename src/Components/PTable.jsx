@@ -7,6 +7,9 @@ import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
 import 'firebase/compat/firestore';
 import {
   doc,
@@ -15,11 +18,77 @@ import {
   updateDoc,
   onSnapshot,
 } from 'firebase/firestore';
-import { db, auth } from '../firebase';
+import { ref, deleteObject, listAll } from 'firebase/storage';
+import { db, auth, storage } from '../firebase';
+import { Link } from 'react-router-dom';
 const Table = () => {
   const [user, setUser] = useState({});
   const [data, setData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
+
+
+
+
+const handleDelete = async (productId) => {
+  const adminRef = doc(db, 'admin', auth?.currentUser?.uid);
+  const adminDoc = await getDoc(adminRef);
+
+  if (!adminDoc.exists()) {
+    console.log('No such document!');
+    return;
+  }
+
+  // Retrieve the products field from the document data
+  const products = adminDoc.data().products;
+
+  // Find the product to delete by productId
+  const productToDelete = products.find(
+    (product) => product.productId === productId
+  );
+
+  const productImagesRef = ref(storage, `images/productImages/${productId}`);
+
+  // Delete all the files in the folder
+  try {
+    const listResult = await listAll(productImagesRef);
+    const deletePromises = listResult.items.map((itemRef) =>
+      deleteObject(itemRef)
+    );
+    await Promise.all(deletePromises);
+    console.log('All files in folder deleted successfully.');
+  } catch (error) {
+    console.log('Error deleting files in folder:', error);
+  }
+
+  // Delete the folder itself
+  try {
+    await deleteObject(productImagesRef);
+    console.log('Folder deleted successfully.');
+  } catch (error) {
+    console.log('Error deleting folder:', error);
+  }
+
+  // Update the products field of the document in Firestore
+  const updatedProducts = products.filter(
+    (product) => product.productId !== productId
+  );
+  await updateDoc(adminRef, { products: updatedProducts });
+
+  // Update the filteredData state variable
+  const updatedFilteredData = filteredData.filter(
+    (product) => product.productId !== productId
+  );
+  setFilteredData(updatedFilteredData);
+};
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,15 +164,15 @@ const Table = () => {
 
     if (value === 'available') {
       filteredProducts = data?.products?.filter(
-        (item) => item.status.toLowerCase() === 'available'
+        (item) => item?.status?.toLowerCase() === 'available'
       );
     } else if (value === 'outOfStock') {
       filteredProducts = data?.products?.filter(
-        (item) => item.status.toLowerCase() === 'out of stock'
+        (item) => item?.status?.toLowerCase() === 'out of stock'
       );
     } else if (value === 'fewUnitsLeft') {
       filteredProducts = data?.products?.filter(
-        (item) => item.status.toLowerCase() === 'few units left'
+        (item) => item?.status?.toLowerCase() === 'few units left'
       );
     } else if (value === 'allProducts') {
       filteredProducts = data?.products;
@@ -120,10 +189,10 @@ const Table = () => {
     setCurrentPage(selected);
   };
   const itemsPerPage = 8;
-  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+  const pageCount = Math.ceil(filteredData?.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = filteredData.slice(startIndex, endIndex);
+  const currentData = filteredData?.slice(startIndex, endIndex);
 
   return (
     <>
@@ -342,7 +411,13 @@ const Table = () => {
                   }}
                   className="too-many"
                 >
-                  <MdEdit />
+                  <Link to={`/edit/${item.productId}`}>
+                    <Tooltip>
+                      <IconButton>
+                        <MdEdit />
+                      </IconButton>
+                    </Tooltip>
+                  </Link>
                 </td>
                 <td
                   style={{
@@ -353,7 +428,13 @@ const Table = () => {
                   }}
                   className="too-many"
                 >
-                  <RiDeleteBack2Fill />
+                  <Tooltip>
+                    <IconButton>
+                      <DeleteIcon
+                        onClick={() => handleDelete(item.productId)}
+                      />
+                    </IconButton>
+                  </Tooltip>
                 </td>
               </tr>
             ))}
