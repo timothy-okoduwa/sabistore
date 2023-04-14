@@ -7,7 +7,7 @@ import { GiPapers } from 'react-icons/gi';
 import { FaStore } from 'react-icons/fa';
 import { RiSettings4Fill, RiLogoutBoxLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-const HeadAndSide = ({ user }) => {
+const HeadAndSide = ({ user, handleLogout }) => {
   const [showHidden, setShowHidden] = useState(false);
 
   const handleInitialsClick = () => {
@@ -36,7 +36,7 @@ const HeadAndSide = ({ user }) => {
                           <div>
                             <div>
                               <div>
-                                <div className="got-u">
+                                <div className="got-u" onClick={handleLogout}>
                                   <RiLogoutBoxLine className="color11" />
                                   <span className="link-name11"> Log Out</span>
                                 </div>
