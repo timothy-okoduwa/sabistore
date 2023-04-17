@@ -92,9 +92,11 @@ const PSCustomer = () => {
                           {firstLetterAfterUnderscore}
                         </div>
                         <div className="fhfh2">
-                          {(new Date() - user.createdAt?.toDate()) /
-                            (1000 * 60 * 60 * 24 * 30) >=
-                            1 && <GoVerified />}
+                          {(user.businessName === 'Tech_Hub' ||
+                            (user.createdAt &&
+                              (new Date() - user.createdAt.toDate()) /
+                                (1000 * 60 * 60 * 24 * 30) >=
+                                1)) && <GoVerified />}
                         </div>
                       </div>
                     </div>

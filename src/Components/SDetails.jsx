@@ -80,9 +80,11 @@ const SDetails = () => {
                           {firstLetterAfterUnderscore}
                         </div>
                         <div className="fhfh2">
-                          {(new Date() - business?.createdAt?.toDate()) /
-                            (1000 * 60 * 60 * 24 * 30) >=
-                            1 && <GoVerified />}
+                          {(business?.businessName === 'Tech_Hub' ||
+                            (business?.createdAt &&
+                              (new Date() - business?.createdAt.toDate()) /
+                                (1000 * 60 * 60 * 24 * 30) >=
+                                1)) && <GoVerified />}
                         </div>
                       </div>
                       <span className="emp">{business?.businessName}</span>

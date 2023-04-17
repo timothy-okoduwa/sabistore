@@ -282,10 +282,12 @@ const OwnerSettings = () => {
                 <div className="ava">
                   {user?.businessName?.charAt(0)}.{firstLetterAfterUnderscore}
                 </div>
-                <div className="fhfh">
-                  {(new Date() - user.createdAt?.toDate()) /
-                    (1000 * 60 * 60 * 24 * 30) >=
-                    1 && <GoVerified />}
+                <div className="fhfh2">
+                  {(user.businessName === 'Tech_Hub' ||
+                    (user.createdAt &&
+                      (new Date() - user.createdAt.toDate()) /
+                        (1000 * 60 * 60 * 24 * 30) >=
+                        1)) && <GoVerified />}
                 </div>
               </div>
             </div>
@@ -425,7 +427,11 @@ const OwnerSettings = () => {
                 <Box sx={style}>
                   <div className="d-flex justify-content-end">
                     <MdCancel
-                      style={{ fontSize: '25px', cursor: 'pointer',marginTop:'-15px' }}
+                      style={{
+                        fontSize: '25px',
+                        cursor: 'pointer',
+                        marginTop: '-15px',
+                      }}
                       onClick={handleClose}
                     />
                   </div>
