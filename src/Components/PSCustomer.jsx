@@ -178,7 +178,7 @@ const PSCustomer = () => {
             <div className="rights">
               <hr />
               <div className="pt-2 pb-2">
-                © All rights reserved {currentYear}. {user.businessName} stores
+                ©  All rights reserved {currentYear}. {user.businessName} stores
               </div>
             </div>
           </div>
