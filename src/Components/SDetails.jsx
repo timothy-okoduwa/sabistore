@@ -65,7 +65,7 @@ const SDetails = () => {
       <div>
         <div>
           <div>
-            <div className="container mt-5">
+            <div className="container mt-5 mb-5">
               <div className="bord">
                 <div className="container">
                   <div className="wrong">
