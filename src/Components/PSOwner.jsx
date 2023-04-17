@@ -122,15 +122,17 @@ const PSOwner = () => {
                           </div>
                           <div className="saya">
                             <div className="sweater">{usd.productName}</div>
-                            <div className="off">
-                              -
-                              {(
-                                ((usd.previousPrice - usd.currentPrice) /
-                                  usd.previousPrice) *
-                                100
-                              ).toFixed(0)}
-                              %
-                            </div>
+                            {usd.previousPrice && (
+                              <div className="off">
+                                -
+                                {(
+                                  ((usd.previousPrice - usd.currentPrice) /
+                                    usd.previousPrice) *
+                                  100
+                                ).toFixed(0)}
+                                %
+                              </div>
+                            )}
                           </div>
                           <div className="saya">
                             <div className="sweater">
