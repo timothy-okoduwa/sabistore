@@ -263,7 +263,7 @@ const SDetails = () => {
                           </div>
                           <div className="mt-4">
                             <a
-                              href={`https://api.whatsapp.com/send?phone=${business.phoneNumber}&text=Hi%20${business.businessName}%20i%20would%20like%20to%20purchase%20${product.productName}%20from%20your%20store`}
+                              href={`https://api.whatsapp.com/send?phone=${business.phoneNumber}&text=Hi%20*${business.businessName}*%20i%20would%20like%20to%20purchase%20*${product.productName}*%20from%20your%20store`}
                               target="_blank"
                               rel="noreferrer"
                               style={{ textDecoration: 'none' }}
