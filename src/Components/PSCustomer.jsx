@@ -128,7 +128,10 @@ const PSCustomer = () => {
                   <div className="row">
                     {products?.map((prod) => (
                       <div className="col mb-5 d-flex justify-content-center">
-                        <Link to={`/${user.businessName}/${prod.productId}`} style={{textDecoration:'none'}}>
+                        <Link
+                          to={`/${user.businessName}/${prod.productId}`}
+                          style={{ textDecoration: 'none' }}
+                        >
                           <div>
                             <div className="wool">
                               <img
@@ -171,7 +174,7 @@ const PSCustomer = () => {
             <div className="rights">
               <hr />
               <div className="pt-2 pb-2">
-                © All rights reserved {currentYear}. {user.businessName}
+                © All rights reserved {currentYear}. {user.businessName} stores
               </div>
             </div>
           </div>

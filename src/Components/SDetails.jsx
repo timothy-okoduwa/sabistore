@@ -13,7 +13,11 @@ const SDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [business, setBusiness] = useState(null);
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const duration = moment.duration(
     moment() - moment(business?.createdAt?.toDate())
@@ -290,7 +294,8 @@ const SDetails = () => {
                   <div className="rights">
                     <hr />
                     <div className="pt-2 pb-2">
-                      © All rights reserved 2023. Gfly stores
+                      © All rights reserved {currentYear}.{' '}
+                      {business?.businessName} stores
                     </div>
                   </div>
                 </div>
