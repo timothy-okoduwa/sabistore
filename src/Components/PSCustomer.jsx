@@ -144,12 +144,12 @@ const PSCustomer = () => {
                             </div>
                             <div className="saya">
                               <div className="sweater">{prod?.productName}</div>
-                              {usd.previousPrice && (
+                              {prod?.previousPrice && (
                                 <div className="off">
                                   -
                                   {(
-                                    ((usd.previousPrice - usd.currentPrice) /
-                                      usd.previousPrice) *
+                                    ((prod?.previousPrice - prod?.currentPrice) /
+                                      prod?.previousPrice) *
                                     100
                                   ).toFixed(0)}
                                   %
