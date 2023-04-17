@@ -11,6 +11,7 @@ import Settings from './pages/Settings/Settings';
 import StoreOwner from './pages/Store/StoreOwner';
 import PSCustomer from './Components/PSCustomer';
 import Editpro from './pages/EditProduct/EditPro';
+import SDetails from './Components/SDetails';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -58,14 +59,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/cus"
-            element={
-              <ProtectedRoute>
-                <PSCustomer />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/:busName" element={<PSCustomer />} />
+          <Route path="/:busName/:productId" element={<SDetails />} />
           <Route
             path="/edit/:productId"
             element={

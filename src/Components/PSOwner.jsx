@@ -1,18 +1,19 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../pages/Store/Store.css';
 // import '../pages/Settings/Settings.css';
 import { GoVerified } from 'react-icons/go';
-import {
-  doc,
-  // deleteDoc,
-  getDoc,
-  updateDoc,
-  onSnapshot,
-} from 'firebase/firestore';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { doc, getDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import moment from 'moment';
 const PSOwner = () => {
-   const [user, setUser] = useState({});
+  const [user, setUser] = useState({});
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyClick = () => {
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 5000);
+  };
 
   const duration = moment.duration(
     moment() - moment(user?.createdAt?.toDate())
@@ -30,21 +31,20 @@ const PSOwner = () => {
     formattedDuration = `${Math.round(duration.asYears())}y`;
   }
 
-   useEffect(() => {
-     const fetchData = async () => {
-       try {
-         const docRef = doc(db, 'admin', auth?.currentUser?.uid);
-         const docSnap = await getDoc(docRef);
-         if (docSnap.exists()) {
-           setUser(docSnap.data());
-          
-         }
-       } catch (error) {
-         console.log(error.message);
-       }
-     };
-     fetchData();
-   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, 'admin', auth?.currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
   const und = user?.businessName;
   const underscoreIndex = und?.indexOf('_');
   const firstLetterAfterUnderscore = und?.charAt(underscoreIndex + 1);
@@ -62,24 +62,44 @@ const PSOwner = () => {
             </div>
           </div>
           <div className="container push-little">
-            <div className="low-key">
-              <div className="loo2">
-                <div className="retrospect">
-                  <div className="ava-wrapper2">
-                    <div className="ava2">
-                      {user?.businessName?.charAt(0)}.
-                      {firstLetterAfterUnderscore}
-                    </div>
-                    <div className="fhfh2">
-                      {(new Date() - user.createdAt?.toDate()) /
-                        (1000 * 60 * 60 * 24 * 30) >=
-                        1 && <GoVerified />}
+            <div className="low-key222">
+              <div>
+                <div className="loo2 ">
+                  <div className="retrospect ">
+                    <div className="ava-wrapper2 ">
+                      <div className="ava2">
+                        {user?.businessName?.charAt(0)}.
+                        {firstLetterAfterUnderscore}
+                      </div>
+                      <div className="fhfh2">
+                        {(new Date() - user.createdAt?.toDate()) /
+                          (1000 * 60 * 60 * 24 * 30) >=
+                          1 && <GoVerified />}
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div className="fleou">
+                  <div className="GFly2">{user.businessName}</div>
+                  <div className="probb">
+                    <div className="Coprt">
+                      Copy and share with your contacts
+                    </div>
+                    <div>
+                      <CopyToClipboard
+                        text={`https://sabistore.vercel.app/${user.businessName}`}
+                        onCopy={handleCopyClick}
+                      >
+                        <button className="go-back2">
+                          {isCopied ? 'Copied!' : 'Copy business link'}
+                        </button>
+                      </CopyToClipboard>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="g-stores2">{formattedDuration} on e-market</div>
               </div>
-              <div className="GFly2">{user.businessName}</div>
-              <div className="g-stores2">{formattedDuration} on e-market</div>
             </div>
 
             <div>

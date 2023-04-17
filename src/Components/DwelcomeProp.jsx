@@ -5,7 +5,7 @@ import { BsFillCircleFill } from 'react-icons/bs';
 const DwelcomeProp = ({ user }) => {
   const navigate = useNavigate();
   const move = () => {
-    navigate('/cus');
+    navigate(`/${user?.businessName}`);
   };
   return user ? (
     <div className="down-a-bit">
