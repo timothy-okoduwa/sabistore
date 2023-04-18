@@ -32,7 +32,7 @@ const EEproduct = ({ productId }) => {
         const product = products.find(
           (product) => product.productId === productId
         );
-        console.log(product); // Add this line to check if the product state is being set
+        // console.log(product); // Add this line to check if the product state is being set
         setProduct(product || {});
         setBusiness(businessData || {});
       } catch (error) {

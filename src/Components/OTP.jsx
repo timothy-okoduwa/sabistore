@@ -4,7 +4,8 @@ import { MuiOtpInput } from 'mui-one-time-password-input';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
+import p from './images/party-popper_1f389.png';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 const OTP = ({
   otp,
   setOtp,
@@ -12,6 +13,8 @@ const OTP = ({
   verifyOtp,
   loading,
   error,
+  feedback2,
+  setFeedback2,
 }) => {
   const handleChange2 = (newValue) => {
     setOtp(newValue);
@@ -26,11 +29,19 @@ const OTP = ({
         </div>
         <Form className="mt-5">
           <div>
-            {error ? (
-              <Alert severity="error" sx={{ mb: 2 }}>
-                {JSON.stringify(error)}
-              </Alert>
-            ) : null}
+            {feedback2 && (
+              <div className="alert4 mb-3">
+                <div>
+                  <BsFillCheckCircleFill className="mx-2 loik" />
+                  {feedback2}{' '}
+                  <img
+                    src={p}
+                    alt="New cover image"
+                    style={{ width: '7%', marginTop: '-4px' }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">

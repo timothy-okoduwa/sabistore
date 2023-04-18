@@ -2,13 +2,15 @@ import React, { useState,useEffect } from 'react';
 import '../pages/DashBoard/Dashboard.css';
 import v from './images/vp.jpg';
 import { FaCircle } from 'react-icons/fa';
-import { MdEdit } from 'react-icons/md';
+import { MdEdit, MdCancel } from 'react-icons/md';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 import jsPDF from 'jspdf';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import 'jspdf-autotable';
 import { HiFolderDownload } from 'react-icons/hi';
 import IconButton from '@mui/material/IconButton';
+import p from './images/party-popper_1f389.png';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import 'firebase/compat/firestore';
@@ -26,7 +28,7 @@ const MobileProduct = () => {
  const [user, setUser] = useState({});
  const [data, setData] = useState({});
  const [filteredData, setFilteredData] = useState([]);
-
+ const [feedback, setFeedback] = useState('');
 
 
 
@@ -35,7 +37,7 @@ const handleDelete = async (productId) => {
   const adminDoc = await getDoc(adminRef);
 
   if (!adminDoc.exists()) {
-    console.log('No such document!');
+    // console.log('No such document!');
     return;
   }
 
@@ -56,17 +58,29 @@ const handleDelete = async (productId) => {
       deleteObject(itemRef)
     );
     await Promise.all(deletePromises);
-    console.log('All files in folder deleted successfully.');
+  setFeedback(
+    <>
+     Product deleted successfully{' '}
+      <img
+        src={p}
+        alt="New cover image"
+        style={{ width: '7%', marginTop: '-4px' }}
+      />
+    </>
+  );
+   setTimeout(() => {
+     setFeedback('');
+   }, 9000);
   } catch (error) {
-    console.log('Error deleting files in folder:', error);
+   
   }
 
   // Delete the folder itself
   try {
     await deleteObject(productImagesRef);
-    console.log('Folder deleted successfully.');
+  
   } catch (error) {
-    console.log('Error deleting folder:', error);
+ 
   }
 
   // Update the products field of the document in Firestore
@@ -103,12 +117,12 @@ const handleDelete = async (productId) => {
          setFilteredData(docSnap.data().products);
        }
      } catch (error) {
-       console.log(error.message);
+      //  console.log(error.message);
      }
    };
    fetchData();
  }, []);
- console.log(filteredData);
+//  console.log(filteredData);
 
  // console.log(data?.products);
  const handleDownload = () => {
@@ -180,10 +194,10 @@ const handleDelete = async (productId) => {
      filteredProducts = data?.products;
    }
 
-   console.log('updating filteredData state', filteredProducts);
+  //  console.log('updating filteredData state', filteredProducts);
    setFilteredData(filteredProducts);
 
-   console.log('updating activeFilter state', value);
+  //  console.log('updating activeFilter state', value);
    setActiveFilter(value);
  };
 
@@ -195,9 +209,22 @@ const handleDelete = async (productId) => {
  const startIndex = currentPage * itemsPerPage;
  const endIndex = startIndex + itemsPerPage;
  const currentData = filteredData?.slice(startIndex, endIndex);
-
+  const handleCancelClick = () => {
+    setFeedback('');
+  };
   return (
     <>
+      {feedback && (
+        <div className="alert33">
+          <div>
+            <BsFillCheckCircleFill className="mx-2 loik" />
+            {feedback}
+          </div>
+          <div className="cann">
+            <MdCancel onClick={handleCancelClick} />
+          </div>
+        </div>
+      )}
       <div className=" letsse2 dont-min-show">
         <div className="okokok2 dont-min-show">
           <div

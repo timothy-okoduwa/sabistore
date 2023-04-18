@@ -4,7 +4,9 @@ import { MuiOtpInput } from 'mui-one-time-password-input';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
-const SigninOTP = ({ otp, setOtp, handleSignIn,loading }) => {
+import p from './images/party-popper_1f389.png';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
+const SigninOTP = ({ otp, setOtp, handleSignIn,loading,feedback2 }) => {
   const handleChange3 = (newValue) => {
     setOtp(newValue);
   };
@@ -16,12 +18,32 @@ const SigninOTP = ({ otp, setOtp, handleSignIn,loading }) => {
           <div className="sign-up">Sign In</div>
         </div>
         <Form className="mt-5">
+          <div>
+            {feedback2 && (
+              <div className="alert4 mb-3">
+                <div>
+                  <BsFillCheckCircleFill className="mx-2 loik" />
+                  {feedback2}{' '}
+                  <img
+                    src={p}
+                    alt="New cover image"
+                    style={{ width: '7%', marginTop: '-4px' }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <div className="input-label mb-3">Enter OTP</div>
             <div className="input-label mb-3">
               *An OTP has been sent to your phone number
             </div>
-            <MuiOtpInput length={6} value={otp} onChange={handleChange3} type='number' />
+            <MuiOtpInput
+              length={6}
+              value={otp}
+              onChange={handleChange3}
+              type="number"
+            />
           </Form.Group>
         </Form>
         <button

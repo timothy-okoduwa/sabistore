@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../pages/AddProduct/AddProduct.css';
+import { MdCancel } from 'react-icons/md';
+import { RiErrorWarningFill } from 'react-icons/ri';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -31,6 +33,7 @@ const NewProduct = () => {
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
   const [status, setStatus] = useState('');
+  const [feedback, setFeedback] = useState('');
   const [condition, setCondition] = useState('');
   const [info, setInfo] = useState({ error: null, loading: false });
 
@@ -141,7 +144,7 @@ const NewProduct = () => {
     const files = event.dataTransfer.files;
 
     if (files.length > maxImages) {
-      alert('Sorry, you can only upload up to 10 images');
+      setFeedback('Sorry, you can only upload up to 10 images, we have deleted the rest');
       for (let i = 0; i < maxImages; i++) {
         const file = files[i];
         const imgUrl = URL.createObjectURL(file);
@@ -164,7 +167,7 @@ const NewProduct = () => {
     const maxImages = 10; // maximum number of images
 
     if (event.target.files.length > maxImages) {
-      alert('Sorry, you can only upload up to 10 images');
+      setFeedback('Sorry, you can only upload up to 10 images, we have deleted the rest');
       for (let i = 0; i < maxImages; i++) {
         const file = event.target.files[i];
         const imgUrl = URL.createObjectURL(file);
@@ -195,6 +198,9 @@ const NewProduct = () => {
     updatedImages.splice(index, 1);
     setProductImages(updatedImages);
     // add this line to prevent the default form submission behavior
+  };
+  const handleCancelClick = () => {
+    setFeedback('');
   };
 
   return (
@@ -298,6 +304,17 @@ const NewProduct = () => {
           <div className="own-eyes">
             <div className="upload-images">Upload Product Images</div>
             <div>
+              {feedback && (
+                <div className="alert">
+                  <div>
+                    <RiErrorWarningFill className="mx-2 loik2" />
+                    {feedback}
+                  </div>
+                  <div className="cann">
+                    <MdCancel onClick={handleCancelClick} />
+                  </div>
+                </div>
+              )}
               <div className="dashed" onDragOver={allowDrop} onDrop={drop}>
                 {productImages.length === 0 && (
                   <div className="moddd">
@@ -485,14 +502,9 @@ const NewProduct = () => {
         <div className="container brilliant woww">
           <div className="">
             <button
-              
               onClick={clearForm}
               disabled={loading}
-              className={`delete ${
-                loading 
-                  ? 'disableddd2'
-                  : ''
-              }`}
+              className={`delete ${loading ? 'disableddd2' : ''}`}
             >
               Delete
             </button>

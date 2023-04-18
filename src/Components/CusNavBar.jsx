@@ -24,7 +24,7 @@ const CusNavBar = () => {
         );
 
         if (querySnapshot.docs.length === 0) {
-          console.log('No matching documents.');
+        alert('No matching documents.');
           return;
         }
 

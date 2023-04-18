@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../pages/Settings/Settings.css';
 import { GoVerified } from 'react-icons/go';
 import { db, auth, storage } from '../firebase';
+import { RiErrorWarningFill } from 'react-icons/ri';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { MdCancel } from 'react-icons/md';
+import p from './images/party-popper_1f389.png'
 import moment from 'moment';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import {
   getDoc,
@@ -29,7 +30,46 @@ import {
   listAll,
 } from 'firebase/storage';
 import { deleteUser } from 'firebase/auth';
+import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="text.secondary"
+          style={{ color: 'white', fontSize: '12px' }}
+        >
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
+};
 const OwnerSettings = () => {
   const [user, setUser] = useState({});
   const [businessName, setBusinessName] = useState('');
@@ -41,6 +81,18 @@ const OwnerSettings = () => {
   const [adimg, setAdimg] = useState([]);
   const [isImageSelected, setIsImageSelected] = useState(false);
   const [businessNameExists, setBusinessNameExists] = useState(false);
+  const [progress, setProgress] = React.useState(10);
+const [feedback, setFeedback]=useState('')
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   const navigate = useNavigate();
   const [info, setInfo] = useState({
     loading: false,
@@ -86,33 +138,43 @@ const OwnerSettings = () => {
     formattedDuration = `${Math.round(duration.asYears())}y`;
   }
 
-  const ADCover = async () => {
-    setInfo({ ...info, error: null, loading: true });
-    setInfo2({ ...info, error: null, loading2: true });
-    const imgRef = ref(
-      storage,
-      `adsimages/${new Date().getTime()} - ${adimg.name}`
-    );
-    try {
-      if (user.adsCoverPath) {
-        await deleteObject(ref(storage, user.adsCoverPath));
-      }
-      const snap = await uploadBytes(imgRef, adimg);
-      const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
-
-      await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
-        adsCover: ads,
-        adsCoverPath: snap.ref.fullPath,
-      });
-
-      setAdimg('');
-      setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
-    } catch (err) {
-      console.log(err);
+const ADCover = async () => {
+  setInfo2({ ...info, error: null, loading2: true });
+  const imgRef = ref(
+    storage,
+    `adsimages/${new Date().getTime()} - ${adimg.name}`
+  );
+  try {
+    // Check if user already has an adsCoverPath
+    if (user.adsCoverPath) {
+      // Delete the old image from Firebase Storage
+      await deleteObject(ref(storage, user.adsCoverPath));
     }
-    setIsImageSelected(false);
-    // navigate('/dashboard');
-  };
+    const snap = await uploadBytes(imgRef, adimg);
+    const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
+
+    await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
+      adsCover: ads,
+      adsCoverPath: snap.ref.fullPath,
+    });
+  setFeedback(
+    <>
+      Cover image is changed successfully <img src={p} alt="New cover image" style={{width:'7%',marginTop:'-4px'}} />
+    </>
+  );
+setTimeout(() => {
+  setFeedback('');
+}, 6000);
+    setAdimg('');
+    setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
+  } catch (err) {
+    console.log(err);
+  }
+  setIsImageSelected(false);
+ 
+  // navigate('/dashboard');
+};
+
   const handleSelectImage = (e) => {
     setAdimg(e.target.files[0]);
     setIsImageSelected(true);
@@ -228,6 +290,13 @@ const OwnerSettings = () => {
 
   const isConfirmationValid = confirmationInputValue === user?.businessName;
 
+ const handleCancelClick = () => {
+   setBusinessNameExists(false);
+ };
+  const handleCancelClick2 = () => {
+    setFeedback('');
+  };
+
   return user ? (
     <>
       <div className="through">
@@ -259,13 +328,19 @@ const OwnerSettings = () => {
                   onChange={handleSelectImage}
                 />
                 {isImageSelected && (
-                  <button className="upppoi" onClick={ADCover}>
+                  <button
+                    className="upppoi"
+                    onClick={ADCover}
+                    style={{ background: '#0052CC' }}
+                  >
                     {loading2 ? (
-                      <CircularProgress
+                      <CircularProgressWithLabel
+                        value={progress}
                         style={{
-                          width: '25px',
-                          height: '25px',
+                          width: '29px',
+                          height: '29px',
                           color: 'white',
+                          fontSize: '12px',
                         }}
                       />
                     ) : (
@@ -275,6 +350,17 @@ const OwnerSettings = () => {
                 )}
               </div>
             </div>
+            {feedback && (
+              <div className="alert33">
+                <div>
+                  <BsFillCheckCircleFill className="mx-2 loik" />
+                  {feedback}
+                </div>
+                <div className="cann">
+                  <MdCancel onClick={handleCancelClick2} />
+                </div>
+              </div>
+            )}
           </div>
           <div className="loo">
             <div className="retrospect">
@@ -309,19 +395,17 @@ const OwnerSettings = () => {
                       onChange={(e) => setBusinessName(e.target.value)}
                     />
                     {businessNameExists && (
-                      <p
-                        style={{
-                          fontSize: '12px',
-                          color: '#ff0000',
-
-                          marginBottom: '8px',
-                          marginTop: '8px',
-                        }}
-                      >
-                        An account with <b>{businessName}</b> already exists,
-                        Please choose a different Business name.(ignore if the
-                        name is currently yours)
-                      </p>
+                      <div className="alert2">
+                        <div>
+                          <RiErrorWarningFill className="mx-2 loik2" />
+                          An account with <b>{businessName}</b> already exists,
+                          Please choose a different Business name.(ignore if the
+                          name is currently yours)
+                        </div>
+                        <div className="cann">
+                          <MdCancel onClick={handleCancelClick} />
+                        </div>
+                      </div>
                     )}
                     <div className="mt-3 trouble">
                       Your Business Name will be visible to everyone on that

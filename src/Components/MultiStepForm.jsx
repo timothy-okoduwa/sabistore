@@ -4,6 +4,7 @@ import '../pages/SignPage/Sign.css';
 import { Link, useNavigate } from 'react-router-dom';
 import OTP from './OTP';
 import { db } from '../firebase';
+import m from './images/man-facepalming_1f926-200d-2642-fe0f.png';
 import {
   getAuth,
   browserSessionPersistence,
@@ -29,8 +30,13 @@ const MultiStepForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [businessNameExists, setBusinessNameExists] = useState(false);
+  const [emailExixts, setEmailExixts] = useState(false);
   const [flag, setFlag] = useState(false);
+  const [feedback, setFeedback] = useState('');
+  const [feedback2, setFeedback2] = useState('');
+  const [feedback3, setFeedback3] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumberExists, setPhoneNumberExisis] = useState(false);
   const [recaptchaPresent, setRecaptchaPresent] = useState(false);
   const [result, setResult] = useState('');
   const [otp, setOtp] = useState('');
@@ -53,7 +59,7 @@ const MultiStepForm = () => {
       'recaptcha-container',
       {
         callback: () => {
-          console.log('reCAPTCHA verification successful');
+          setFeedback2('reCAPTCHA verification successful');
           setStep(step + 1);
           document.getElementById('recaptcha-container').style.display = 'none';
         },
@@ -139,6 +145,30 @@ const MultiStepForm = () => {
       checkBusinessNameExists();
     }
   }, [businessName]);
+  // Validating if the email Exists
+  useEffect(() => {
+    async function checkEmailExisits() {
+      const querySnapshot = await getDocs(
+        query(collection(db, 'admin'), where('email', '==', email))
+      );
+      setEmailExixts(!querySnapshot.empty);
+    }
+    if (email) {
+      checkEmailExisits();
+    }
+  }, [email]);
+  // Validating if the phone number Exists
+  useEffect(() => {
+    async function checkPhoneNumberExists() {
+      const querySnapshot = await getDocs(
+        query(collection(db, 'admin'), where('phoneNumber', '==', phoneNumber))
+      );
+      setPhoneNumberExisis(!querySnapshot.empty);
+    }
+    if (phoneNumber) {
+      checkPhoneNumberExists();
+    }
+  }, [phoneNumber]);
 
   // Verifying the OTP and also passing user input to the document
   async function verifyOtp() {
@@ -200,7 +230,15 @@ const MultiStepForm = () => {
 
   //Ends here
   const businessNameChange = (event) => {
-    setBusinessName(event.target.value);
+    const newBusinessName = event.target.value;
+    if (newBusinessName.includes(' ')) {
+      setFeedback3(
+        '  Business name should not contain spaces. You can use " _ "  to seprate your words, e.g test_Stores. '
+      );
+    } else {
+      setFeedback3(null);
+    }
+    setBusinessName(newBusinessName);
   };
   // const storeNameChange = (event) => {
   //   setStoreName(event.target.value);
@@ -208,8 +246,22 @@ const MultiStepForm = () => {
   const emailChange = (event) => {
     setEmail(event.target.value);
   };
-  const passwordChange = (event) => {
-    setPassword(event.target.value);
+  const passwordBlur = (event) => {
+    const newPassword = event.target.value;
+    if (newPassword.length < 8) {
+      setFeedback(
+        <>
+          Password must be at least 8 characters long.{' '}
+          <img
+            src={m}
+            alt="New cover image"
+            style={{ width: '7%', marginTop: '-4px' }}
+          />
+        </>
+      );
+    } else {
+      setFeedback('');
+    }
   };
 
   console.log(error);
@@ -233,8 +285,16 @@ const MultiStepForm = () => {
             setBusinessNameExists={setBusinessNameExists}
             businessNameChange={businessNameChange}
             emailChange={emailChange}
-            passwordChange={passwordChange}
+            passwordBlur={passwordBlur}
             error={error}
+            emailExixts={emailExixts}
+            setEmailExixts={setEmailExixts}
+            phoneNumberExists={phoneNumberExists}
+            setPhoneNumberExisis={setPhoneNumberExisis}
+            setFeedback={setFeedback}
+            feedback={feedback}
+            setFeedback3={setFeedback3}
+            feedback3={feedback3}
           />
         );
       case 2:
@@ -247,6 +307,8 @@ const MultiStepForm = () => {
               verifyOtp={verifyOtp}
               loading={loading}
               error={error}
+              setFeedback2={setFeedback}
+              feedback2={feedback2}
             />
           </div>
         );
@@ -283,6 +345,8 @@ const MultiStepForm = () => {
                   !phoneNumber ||
                   !password ||
                   !email ||
+                  password.length < 8 ||
+                  businessName.includes(' ') ||
                   recaptchaPresent
                     ? 'disabled'
                     : ''
@@ -293,6 +357,8 @@ const MultiStepForm = () => {
                   !phoneNumber ||
                   !password ||
                   !email ||
+                  password.length < 8 ||
+                  businessName.includes(' ') ||
                   recaptchaPresent
                 }
                 style={{ display: recaptchaPresent ? 'none' : 'block' }}

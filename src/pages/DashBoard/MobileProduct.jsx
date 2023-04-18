@@ -28,12 +28,12 @@ const MobileProduct = () => {
           setFilteredData(docSnap.data().products);
         }
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
     fetchData();
   }, []);
-  console.log(filteredData);
+  // console.log(filteredData);
   const [activeFilter, setActiveFilter] = useState('allProducts');
   const [currentPage, setCurrentPage] = useState(0); // Add currentPage state variable
   const handleFilterClick = (value) => {
@@ -55,10 +55,10 @@ const MobileProduct = () => {
       filteredProducts = data?.products;
     }
 
-    console.log('updating filteredData state', filteredProducts);
+    // console.log('updating filteredData state', filteredProducts);
     setFilteredData(filteredProducts);
 
-    console.log('updating activeFilter state', value);
+    // console.log('updating activeFilter state', value);
     setActiveFilter(value);
   };
 

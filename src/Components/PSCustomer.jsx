@@ -41,7 +41,7 @@ const PSCustomer = () => {
         );
 
         if (querySnapshot.docs.length === 0) {
-          console.log('No matching documents.');
+          // console.log('No matching documents.');
           return;
         }
 

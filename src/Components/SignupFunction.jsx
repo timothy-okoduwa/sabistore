@@ -1,10 +1,13 @@
 import React from 'react';
 import '../pages/SignPage/Sign.css';
 import Form from 'react-bootstrap/Form';
+import { RiErrorWarningFill } from 'react-icons/ri';
+import { MdCancel } from 'react-icons/md';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import Alert from '@mui/material/Alert';
-
+import m from './images/man-facepalming_1f926-200d-2642-fe0f.png';
+import d from './images/disappointed-face_1f61e.png';
 const SignupFunction = ({
   phoneNumber,
   setPhoneNumber,
@@ -18,11 +21,22 @@ const SignupFunction = ({
   password,
   error,
   businessNameExists,
+  setBusinessNameExists,
   businessNameChange,
   emailChange,
-  passwordChange,
+  passwordBlur,
+  setEmailExixts,
+  emailExixts,
+  setPhoneNumberExisis,
+  phoneNumberExists,
+  setFeedback,
+  feedback,
+  setFeedback3,
+  feedback3,
 }) => {
-  
+  //  const handleCancelClick = () => {
+  //    setBusinessNameExists(false);
+  //  };
 
   return (
     <div className="inputs-holder negate">
@@ -32,11 +46,20 @@ const SignupFunction = ({
       </div>
       <Form className="mt-4">
         <div>
-          {error ? (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {JSON.stringify(error)}
-            </Alert>
-          ) : null}
+          {businessNameExists && (
+            <div className="alert2 mb-3">
+              <div>
+                <RiErrorWarningFill className="mx-2 loik2" />
+                An account with <b>{businessName}</b> already exists, Please
+                choose a different Business name.{' '}
+                <img
+                  src={m}
+                  alt="New cover image"
+                  style={{ width: '7%', marginTop: '-4px' }}
+                />
+              </div>
+            </div>
+          )}
         </div>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <div className="input-label mb-3">Business Name</div>
@@ -54,20 +77,21 @@ const SignupFunction = ({
                 marginTop: '8px',
                 marginBottom: '8px',
               }}
-            >{`sendlinks.com/preview/${businessName}`}</div>
-            {businessNameExists && (
-              <p
-                style={{
-                  fontSize: '12px',
-                  color: '#ff0000',
-
-                  marginBottom: '8px',
-                  marginTop: '9px',
-                }}
-              >
-                An account with <b>{businessName}</b> already exists. Please
-                choose a different Business name.
-              </p>
+            >{`sendlinks.com/${businessName}`}</div>
+            {feedback3 && (
+              <div className="alert3 mb-3">
+                <div>
+                  <RiErrorWarningFill className="mx-2 loik3" />
+                  <span style={{ color: '#f87f7f' }}>
+                    {feedback3}
+                    <img
+                      src={d}
+                      alt="New cover image"
+                      style={{ width: '7%', marginTop: '-4px' }}
+                    />
+                  </span>
+                </div>
+              </div>
             )}
           </div>
         </Form.Group>
@@ -87,16 +111,41 @@ const SignupFunction = ({
             onChange={emailChange}
             required
           />
+          {emailExixts && (
+            <div className="alert2 mb-3">
+              <div>
+                <RiErrorWarningFill className="mx-2 loik2" />
+                An account with <b>{email}</b> already exists, Please choose a
+                different email{' '}
+                <img
+                  src={m}
+                  alt="New cover image"
+                  style={{ width: '7%', marginTop: '-4px' }}
+                />
+                .
+              </div>
+            </div>
+          )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <div className="input-label mb-3">Password</div>
           <input
             className="input-input"
             value={password}
-            onChange={passwordChange}
+            onBlur={passwordBlur}
+            onChange={(event) => setPassword(event.target.value)}
             required
             type="password"
           />
+          {feedback && (
+            <div className="alert2 mb-3">
+              <div>
+                <RiErrorWarningFill className="mx-2 loik2" />
+                {feedback}
+               
+              </div>
+            </div>
+          )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <div className="input-label mb-3">Phone Number</div>
@@ -107,6 +156,21 @@ const SignupFunction = ({
             className="px-3 input-input wow"
             required
           />
+          {phoneNumberExists && (
+            <div className="alert2 mb-3">
+              <div>
+                <RiErrorWarningFill className="mx-2 loik2" />
+                this phone number <b>{phoneNumber}</b> is tied to an account,
+                Please choose a different phone number{' '}
+                <img
+                  src={m}
+                  alt="New cover image"
+                  style={{ width: '7%', marginTop: '-4px' }}
+                />
+                .
+              </div>
+            </div>
+          )}
         </Form.Group>
       </Form>
     </div>

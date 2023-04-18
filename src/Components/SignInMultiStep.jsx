@@ -18,6 +18,7 @@ const SignInMultiStep = () => {
   const [verificationId, setVerificationId] = useState('');
   const [recaptchaPresent, setRecaptchaPresent] = useState(false);
   const [otp, setOtp] = React.useState('');
+    const [feedback2, setFeedback2] = useState('');
   const [error, setError] = useState('');
   const [info, setInfo] = useState({
     loading: false,
@@ -31,11 +32,12 @@ const SignInMultiStep = () => {
   authInstance.setPersistence(browserSessionPersistence);
 
   function setUpRecaptcha(number) {
+     
     const recaptchaVerifier = new RecaptchaVerifier(
       'recaptcha-container',
       {
         callback: () => {
-          console.log('reCAPTCHA verification successful');
+         setFeedback2('reCAPTCHA verification successful');
           setStep(step + 1);
           document.getElementById('recaptcha-container').style.display = 'none';
         },
@@ -59,12 +61,14 @@ const SignInMultiStep = () => {
       setError('');
     } catch (err) {
       setError(err.message);
-      console.log(err);
+      // console.log(err);
     }
   };
-  console.log(error)
+  // console.log(error)
 
   const handleSignIn = async () => {
+     setInfo({ ...info, error: null, loading: true, online: true });
+
     setError('');
     try {
       const credential = PhoneAuthProvider.credential(verificationId, otp);
@@ -73,7 +77,7 @@ const SignInMultiStep = () => {
         credential
       );
       const user = userCredential.user;
-      console.log(user);
+      // console.log(user);
 
       // Update user's online status to true
       const userDocRef = doc(db, 'admin', user.uid);
@@ -95,7 +99,14 @@ const SignInMultiStep = () => {
         );
       case 2:
         return (
-          <SigninOTP otp={otp} setOtp={setOtp} handleSignIn={handleSignIn} loading={loading} />
+          <SigninOTP
+            otp={otp}
+            setOtp={setOtp}
+            handleSignIn={handleSignIn}
+            loading={loading}
+            setFeedback2={setFeedback2}
+            feedback2={feedback2}
+          />
         );
 
       default:

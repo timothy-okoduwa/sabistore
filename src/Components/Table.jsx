@@ -34,12 +34,12 @@ const Table = () => {
           setFilteredData(docSnap.data().products);
         }
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
     fetchData();
   }, []);
-  console.log(filteredData);
+  // console.log(filteredData);
 
   // console.log(data?.products);
   const handleDownload = () => {
@@ -111,10 +111,10 @@ const Table = () => {
       filteredProducts = data?.products;
     }
 
-    console.log('updating filteredData state', filteredProducts);
+    // console.log('updating filteredData state', filteredProducts);
     setFilteredData(filteredProducts);
 
-    console.log('updating activeFilter state', value);
+    // console.log('updating activeFilter state', value);
     setActiveFilter(value);
   };
 
