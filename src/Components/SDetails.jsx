@@ -340,7 +340,7 @@ const handleFacebookShare = () => {
                     <hr />
                     <div className="pt-2 pb-2">
                       © All rights reserved {currentYear}.{' '}
-                      {business?.businessName} stores
+                      {business?.businessName}
                     </div>
                   </div>
                 </div>
