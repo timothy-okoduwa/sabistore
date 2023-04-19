@@ -8,7 +8,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { MdCancel } from 'react-icons/md';
-import p from './images/party-popper_1f389.png'
+import 'hover.css/css/hover-min.css';
+import p from './images/party-popper_1f389.png';
 import moment from 'moment';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
@@ -82,7 +83,7 @@ const OwnerSettings = () => {
   const [isImageSelected, setIsImageSelected] = useState(false);
   const [businessNameExists, setBusinessNameExists] = useState(false);
   const [progress, setProgress] = React.useState(10);
-const [feedback, setFeedback]=useState('')
+  const [feedback, setFeedback] = useState('');
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
@@ -138,76 +139,81 @@ const [feedback, setFeedback]=useState('')
     formattedDuration = `${Math.round(duration.asYears())}y`;
   }
 
-const ADCover = async () => {
-  setInfo2({ ...info, error: null, loading2: true });
-  const imgRef = ref(
-    storage,
-    `adsimages/${new Date().getTime()} - ${adimg.name}`
-  );
-  try {
-    // Check if user already has an adsCoverPath
-    if (user.adsCoverPath) {
-      // Delete the old image from Firebase Storage
-      await deleteObject(ref(storage, user.adsCoverPath));
-    }
-    const snap = await uploadBytes(imgRef, adimg);
-    const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
+  const ADCover = async () => {
+    setInfo2({ ...info, error: null, loading2: true });
+    const imgRef = ref(
+      storage,
+      `adsimages/${new Date().getTime()} - ${adimg.name}`
+    );
+    try {
+      // Check if user already has an adsCoverPath
+      if (user.adsCoverPath) {
+        // Delete the old image from Firebase Storage
+        await deleteObject(ref(storage, user.adsCoverPath));
+      }
+      const snap = await uploadBytes(imgRef, adimg);
+      const ads = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
-    await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
-      adsCover: ads,
-      adsCoverPath: snap.ref.fullPath,
-    });
-  setFeedback(
-    <>
-      Cover image is changed successfully <img src={p} alt="New cover image" style={{width:'7%',marginTop:'-4px'}} />
-    </>
-  );
-setTimeout(() => {
-  setFeedback('');
-}, 6000);
-    setAdimg('');
-    setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
-  } catch (err) {
-    console.log(err);
-  }
-  setIsImageSelected(false);
- 
-  // navigate('/dashboard');
-};
+      await updateDoc(doc(db, 'admin', auth.currentUser.uid), {
+        adsCover: ads,
+        adsCoverPath: snap.ref.fullPath,
+      });
+      setFeedback(
+        <>
+          Cover image is changed successfully{' '}
+          <img
+            src={p}
+            alt="New cover image"
+            style={{ width: '7%', marginTop: '-4px' }}
+          />
+        </>
+      );
+      setTimeout(() => {
+        setFeedback('');
+      }, 6000);
+      setAdimg('');
+      setUser({ ...user, adsCover: ads }); // Update user.adsCover with the URL of the uploaded image
+    } catch (err) {
+      console.log(err);
+    }
+    setIsImageSelected(false);
+
+    // navigate('/dashboard');
+  };
 
   const handleSelectImage = (e) => {
     setAdimg(e.target.files[0]);
     setIsImageSelected(true);
   };
 
-const updateField = async () => {
-  setInfo({ ...info, error: null, loading: true });
-  try {
-    const docRef = doc(db, 'admin', auth?.currentUser?.uid);
-    const updates = {
-      businessName: businessName,
-      email: email,
-      storeBio: storeBio,
-      phoneNumber: phoneNumber,
-      location: location,
-    };
-    if (storeCurrency !== '') {
-      updates.storeCurrency = storeCurrency;
+  const updateField = async () => {
+    setInfo({ ...info, error: null, loading: true });
+    try {
+      const docRef = doc(db, 'admin', auth?.currentUser?.uid);
+      const updates = {
+        businessName: businessName,
+        email: email,
+        storeBio: storeBio,
+        phoneNumber: phoneNumber,
+        location: location,
+      };
+      if (storeCurrency !== '') {
+        updates.storeCurrency = storeCurrency;
+      }
+      await updateDoc(docRef, updates);
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
     }
-    await updateDoc(docRef, updates);
-    console.log('Document successfully updated!');
-  } catch (error) {
-    console.error('Error updating document: ', error);
-  }
 
-  setBusinessName('');
-  setEmail('');
-  setStoreBio('');
-  setLocation('');
-  setPhoneNumber('');
-  setStoreCurrency('');
-  navigate('/dashboard');
-};
+    setBusinessName('');
+    setEmail('');
+    setStoreBio('');
+    setLocation('');
+    setPhoneNumber('');
+    setStoreCurrency('');
+    navigate('/dashboard');
+  };
   // Validating if the business Name Exists
   useEffect(() => {
     async function checkBusinessNameExists() {
@@ -292,19 +298,19 @@ const updateField = async () => {
 
   const isConfirmationValid = confirmationInputValue === user?.businessName;
 
- const handleCancelClick = () => {
-   setBusinessNameExists(false);
- };
+  const handleCancelClick = () => {
+    setBusinessNameExists(false);
+  };
   const handleCancelClick2 = () => {
     setFeedback('');
   };
 
-const handleCurrencyChange = (event) => {
-  const selectedCurrency = event.target.value;
-  if (selectedCurrency !== '') {
-    setStoreCurrency(selectedCurrency);
-  }
-};
+  const handleCurrencyChange = (event) => {
+    const selectedCurrency = event.target.value;
+    if (selectedCurrency !== '') {
+      setStoreCurrency(selectedCurrency);
+    }
+  };
 
   return user ? (
     <>
@@ -559,7 +565,7 @@ const handleCurrencyChange = (event) => {
 
                     <div className="mt-4 d-flex justify-content-end">
                       <button
-                        className="delete"
+                        className="delete hvr-wobble-top"
                         onClick={handleDeleteClick}
                         style={{
                           opacity: isConfirmationValid ? 1 : 0,
@@ -578,7 +584,7 @@ const handleCurrencyChange = (event) => {
         <div className="mb-5">
           <div className="container brilliant woww2">
             <div>
-              <button className="delete" onClick={handleOpen}>
+              <button className="delete hvr-wobble-top" onClick={handleOpen}>
                 Deactivate Store{' '}
               </button>
             </div>
