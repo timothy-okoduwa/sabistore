@@ -38,6 +38,15 @@ const SDetails = () => {
   const move = () => {
     navigate(`/${business.businessName}`);
   };
+
+const handleWhatsappShare = () => {
+ const url = `whatsapp://status?text=Check%20out%20this%20product:%20${encodeURIComponent(
+   window.location.href
+ )}`;
+ window.open(url, '_blank');
+};
+
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -289,11 +298,17 @@ const SDetails = () => {
                                   <BsFacebook className="manyfb" />
                                 </a>
                               </div>
+                              {/* <div>
+                                <FaInstagramSquare
+                                  className=" manyfb2"
+                                 
+                                />
+                              </div> */}
                               <div>
-                                <FaInstagramSquare className=" manyfb2" />
-                              </div>
-                              <div>
-                                <FaWhatsappSquare className=" manyfb3" />
+                                <FaWhatsappSquare
+                                  className=" manyfb3"
+                                  onClick={handleWhatsappShare}
+                                />
                               </div>
                             </div>
                           </div>
