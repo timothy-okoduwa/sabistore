@@ -39,13 +39,12 @@ const SDetails = () => {
     navigate(`/${business.businessName}`);
   };
 
-const handleWhatsappShare = () => {
- const url = `whatsapp://status?text=Check%20out%20this%20product:%20${encodeURIComponent(
-   window.location.href
- )}`;
- window.open(url, '_blank');
-};
-
+  const handleWhatsappShare = () => {
+    const url = `whatsapp://status?text=Check%20out%20this%20product%20from%20${
+      business.businessName
+    }%3A%20${encodeURIComponent(window.location.href)}`;
+    window.open(url, '_blank');
+  };
 
   useEffect(() => {
     const getProduct = async () => {
@@ -218,9 +217,16 @@ const handleWhatsappShare = () => {
                           </div>
                           <div className="mt-4">
                             <div className="prd">Size</div>
-                            <div className="descv2">
+                            <div
+                              className="descv2"
+                              style={{
+                                display: 'flex',
+
+                                flexWrap: 'wrap',
+                              }}
+                            >
                               <div
-                                className="oiu"
+                                className="oiu mb-3"
                                 style={{
                                   background:
                                     product.size.toLowerCase() === 'sm'
@@ -231,7 +237,7 @@ const handleWhatsappShare = () => {
                                 SM
                               </div>
                               <div
-                                className="oiu"
+                                className="oiu mb-3"
                                 style={{
                                   background:
                                     product.size.toLowerCase() === 'md'
@@ -242,7 +248,7 @@ const handleWhatsappShare = () => {
                                 MD
                               </div>
                               <div
-                                className="oiu"
+                                className="oiu mb-3"
                                 style={{
                                   background:
                                     product.size.toLowerCase() === 'lg'
@@ -253,7 +259,7 @@ const handleWhatsappShare = () => {
                                 LG
                               </div>
                               <div
-                                className="oiu"
+                                className="oiu mb-3"
                                 style={{
                                   background:
                                     product.size.toLowerCase() === 'xl'
@@ -264,7 +270,7 @@ const handleWhatsappShare = () => {
                                 XL
                               </div>
                               <div
-                                className="oiu"
+                                className="oiu mb-3"
                                 style={{
                                   background:
                                     product.size.toLowerCase() === 'xxl'
