@@ -129,7 +129,7 @@ const PSCustomer = () => {
                 <div className="oshey2">
                   <div className="row">
                     {products?.map((prod) => (
-                      <div className="col mb-5 d-flex justify-content-center">
+                      <div className="col mb-5 juvinal">
                         <Link
                           to={`/${user.businessName}/${prod.productId}`}
                           style={{ textDecoration: 'none' }}
@@ -148,7 +148,8 @@ const PSCustomer = () => {
                                 <div className="off">
                                   -
                                   {(
-                                    ((prod?.previousPrice - prod?.currentPrice) /
+                                    ((prod?.previousPrice -
+                                      prod?.currentPrice) /
                                       prod?.previousPrice) *
                                     100
                                   ).toFixed(0)}
@@ -178,7 +179,7 @@ const PSCustomer = () => {
             <div className="rights">
               <hr />
               <div className="pt-2 pb-2">
-                ©  All rights reserved {currentYear}. {user.businessName} stores
+                © All rights reserved {currentYear}. {user.businessName} 
               </div>
             </div>
           </div>

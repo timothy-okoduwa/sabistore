@@ -180,32 +180,34 @@ setTimeout(() => {
     setIsImageSelected(true);
   };
 
-  const updateField = async () => {
-    setInfo({ ...info, error: null, loading: true });
-    try {
-      const docRef = doc(db, 'admin', auth?.currentUser?.uid);
-      await updateDoc(docRef, {
-        businessName: businessName,
-        email: email,
-        storeBio: storeBio,
-        phoneNumber: phoneNumber,
-        storeCurrency: storeCurrency,
-        location: location,
-      });
-      console.log('Document successfully updated!');
-    } catch (error) {
-      console.error('Error updating document: ', error);
+const updateField = async () => {
+  setInfo({ ...info, error: null, loading: true });
+  try {
+    const docRef = doc(db, 'admin', auth?.currentUser?.uid);
+    const updates = {
+      businessName: businessName,
+      email: email,
+      storeBio: storeBio,
+      phoneNumber: phoneNumber,
+      location: location,
+    };
+    if (storeCurrency !== '') {
+      updates.storeCurrency = storeCurrency;
     }
+    await updateDoc(docRef, updates);
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
 
-    setBusinessName('');
-    setEmail('');
-    setStoreBio('');
-    setLocation('');
-    setPhoneNumber('');
-    setStoreCurrency('');
-    navigate('/dashboard');
-  };
-
+  setBusinessName('');
+  setEmail('');
+  setStoreBio('');
+  setLocation('');
+  setPhoneNumber('');
+  setStoreCurrency('');
+  navigate('/dashboard');
+};
   // Validating if the business Name Exists
   useEffect(() => {
     async function checkBusinessNameExists() {
@@ -296,6 +298,13 @@ setTimeout(() => {
   const handleCancelClick2 = () => {
     setFeedback('');
   };
+
+const handleCurrencyChange = (event) => {
+  const selectedCurrency = event.target.value;
+  if (selectedCurrency !== '') {
+    setStoreCurrency(selectedCurrency);
+  }
+};
 
   return user ? (
     <>
@@ -472,7 +481,7 @@ setTimeout(() => {
                     <select
                       className="yesss"
                       value={storeCurrency}
-                      onChange={(e) => setStoreCurrency(e.target.value)}
+                      onChange={handleCurrencyChange}
                     >
                       <option value="">choose currency</option>
                       <option value="₦">₦</option>

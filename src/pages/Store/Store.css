@@ -130,6 +130,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 966px) {
+  .juvinal{
+    display: flex !important;
+    justify-content: center !important;
+  }}
+
 @media screen and (max-width: 991px) {
   .full-g {
     width: 100%;

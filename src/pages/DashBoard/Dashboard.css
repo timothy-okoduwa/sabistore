@@ -21,6 +21,10 @@
   border-right: 1.05144px solid #8c8c8c;
 }
 @media screen and (max-width: 966px) {
+  .juvinal{
+    display: flex !important;
+    justify-content: center !important;
+  }
   .table-container {
     display: none;
   }

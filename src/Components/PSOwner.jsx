@@ -111,7 +111,7 @@ const PSOwner = () => {
                 <div className="oshey2">
                   <div className="row">
                     {user?.products?.map((usd) => (
-                      <div className="col mb-5 d-flex justify-content-center">
+                      <div className="col mb-5 juvinal">
                         <div>
                           <div className="wool">
                             <img

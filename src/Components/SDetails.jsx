@@ -13,7 +13,7 @@ const SDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [business, setBusiness] = useState(null);
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -204,40 +204,44 @@ const SDetails = () => {
                             </div>
                           </div>
                           <div className="mt-4">
+                            <div className="prd">Product Color</div>
+                            <div className="descv">{product.color}</div>
+                          </div>
+                          <div className="mt-4">
                             <div className="prd">Size</div>
                             <div className="descv2">
                               <div
                                 className="oiu"
                                 style={{
                                   background:
-                                    product.size.toLowerCase() === 's'
+                                    product.size.toLowerCase() === 'sm'
                                       ? '#44B700'
                                       : '#e7e7e7',
                                 }}
                               >
-                                S
+                                SM
                               </div>
                               <div
                                 className="oiu"
                                 style={{
                                   background:
-                                    product.size.toLowerCase() === 'm'
+                                    product.size.toLowerCase() === 'md'
                                       ? '#44B700'
                                       : '#e7e7e7',
                                 }}
                               >
-                                M
+                                MD
                               </div>
                               <div
                                 className="oiu"
                                 style={{
                                   background:
-                                    product.size.toLowerCase() === 'l'
+                                    product.size.toLowerCase() === 'lg'
                                       ? '#44B700'
                                       : '#e7e7e7',
                                 }}
                               >
-                                L
+                                LG
                               </div>
                               <div
                                 className="oiu"
@@ -277,7 +281,13 @@ const SDetails = () => {
                             <div className="prd">Share</div>
                             <div className="descv2">
                               <div>
-                                <BsFacebook className=" manyfb" />
+                                <a
+                                  href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <BsFacebook className="manyfb" />
+                                </a>
                               </div>
                               <div>
                                 <FaInstagramSquare className=" manyfb2" />

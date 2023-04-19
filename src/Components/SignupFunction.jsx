@@ -116,13 +116,12 @@ const SignupFunction = ({
               <div>
                 <RiErrorWarningFill className="mx-2 loik2" />
                 An account with <b>{email}</b> already exists, Please choose a
-                different email{' '}
+                different email .
                 <img
                   src={m}
                   alt="New cover image"
                   style={{ width: '7%', marginTop: '-4px' }}
                 />
-                .
               </div>
             </div>
           )}
@@ -142,7 +141,6 @@ const SignupFunction = ({
               <div>
                 <RiErrorWarningFill className="mx-2 loik2" />
                 {feedback}
-               
               </div>
             </div>
           )}
@@ -161,13 +159,12 @@ const SignupFunction = ({
               <div>
                 <RiErrorWarningFill className="mx-2 loik2" />
                 this phone number <b>{phoneNumber}</b> is tied to an account,
-                Please choose a different phone number{' '}
+                Please choose a different phone number.
                 <img
                   src={m}
                   alt="New cover image"
                   style={{ width: '7%', marginTop: '-4px' }}
                 />
-                .
               </div>
             </div>
           )}
