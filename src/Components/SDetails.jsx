@@ -72,6 +72,21 @@ const SDetails = () => {
   const und = business?.businessName;
   const underscoreIndex = und?.indexOf('_');
   const firstLetterAfterUnderscore = und?.charAt(underscoreIndex + 1);
+
+
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+const facebookShareUrl = isMobile
+  ? `fb://facewebmodal/f?href=${encodeURIComponent(window.location.href)}`
+  : `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      window.location.href
+    )}`;
+
+const handleFacebookShare = () => {
+  window.open(facebookShareUrl, '_blank');
+};
+
+
   return product ? (
     <div>
       <div>
@@ -296,13 +311,10 @@ const SDetails = () => {
                             <div className="prd">Share</div>
                             <div className="descv2">
                               <div>
-                                <a
-                                  href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <BsFacebook className="manyfb" />
-                                </a>
+                                <BsFacebook
+                                  className="manyfb"
+                                  onClick={handleFacebookShare}
+                                />
                               </div>
                               {/* <div>
                                 <FaInstagramSquare

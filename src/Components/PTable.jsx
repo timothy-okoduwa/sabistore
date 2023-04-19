@@ -131,7 +131,6 @@ const handleDelete = async (productId) => {
       'Product',
       'Date Added',
       'Price',
-      'Status',
       'Category',
       'Previous Price',
       'Status',
@@ -144,10 +143,8 @@ const handleDelete = async (productId) => {
         item?.productName,
         item?.dateAdded?.toDate()?.toLocaleString(),
         item?.currentPrice,
-        item?.status,
         item?.category,
         item?.previousPrice,
-
         item?.status,
         item?.productId?.substring(0, 6),
       ];
@@ -158,7 +155,6 @@ const handleDelete = async (productId) => {
       'Product',
       'Date Added',
       'Price',
-      'Status',
       'Category',
       'Previous Price',
       'Status',
